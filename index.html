@@ -4,66 +4,41 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>CloudBeds → SIIGO | Archivo Plano Terceros</title>
-<!-- SheetJS for reading any Excel format -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<!-- ExcelJS for writing with exact styling -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --bg:#0f1117;
-  --surface:#1a1d27;
-  --surface2:#22263a;
-  --border:#2e3350;
-  --teal:#00c9b1;
-  --teal-dim:#00c9b120;
-  --teal-dark:#008f7e;
-  --blue:#3b82f6;
-  --blue-dim:#3b82f615;
-  --green:#22c55e;
-  --green-dim:#22c55e18;
-  --yellow:#f59e0b;
-  --red:#ef4444;
-  --text:#e8eaf2;
-  --text2:#8892b0;
-  --text3:#4a5568;
-  --font:'Inter',system-ui,sans-serif;
-  --mono:'JetBrains Mono',monospace;
-  --radius:12px;
-  --radius-sm:8px;
-  --shadow:0 4px 24px rgba(0,0,0,.4);
+  --bg:#0f1117;--surface:#1a1d27;--surface2:#22263a;--border:#2e3350;
+  --teal:#00c9b1;--teal-dim:#00c9b118;--teal-dark:#008f7e;
+  --blue:#3b82f6;--blue-dim:#3b82f615;
+  --green:#22c55e;--green-dim:#22c55e18;
+  --yellow:#f59e0b;--red:#ef4444;--red-dim:#ef444418;
+  --text:#e8eaf2;--text2:#8892b0;--text3:#4a5568;
+  --font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
+  --radius:12px;--radius-sm:8px;--shadow:0 4px 24px rgba(0,0,0,.4);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
-
-/* ── BACKGROUND GRID ── */
 body::before{
   content:'';position:fixed;inset:0;
-  background-image:
-    linear-gradient(rgba(0,201,177,.03) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,201,177,.03) 1px,transparent 1px);
-  background-size:40px 40px;
-  pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(0,201,177,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,201,177,.025) 1px,transparent 1px);
+  background-size:40px 40px;pointer-events:none;z-index:0;
 }
-
-/* ── HEADER ── */
 header{
   position:sticky;top:0;z-index:100;
-  background:rgba(15,17,23,.85);
-  backdrop-filter:blur(20px);
+  background:rgba(15,17,23,.88);backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
-  padding:0 2rem;
-  height:64px;
+  padding:0 2rem;height:64px;
   display:flex;align-items:center;justify-content:space-between;
 }
 .logo{display:flex;align-items:center;gap:12px}
 .logo-icon{
   width:36px;height:36px;border-radius:8px;
   background:linear-gradient(135deg,var(--teal),#00a8d4);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1rem;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
 }
 .logo-text{font-weight:700;font-size:1rem;letter-spacing:-.3px}
 .logo-text span{color:var(--teal)}
@@ -73,26 +48,17 @@ header{
   color:var(--teal);padding:3px 8px;border-radius:4px;letter-spacing:.06em;
 }
 .header-right{display:flex;align-items:center;gap:16px}
-.version{font-family:var(--mono);font-size:.65rem;color:var(--text3);letter-spacing:.04em}
-
-/* ── MAIN LAYOUT ── */
+.version{font-family:var(--mono);font-size:.65rem;color:var(--text3)}
 main{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
-
-/* ── HERO ── */
 .hero{text-align:center;padding:2.5rem 0 2rem}
 .hero-eyebrow{
   font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
   color:var(--teal);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:8px;
 }
 .hero-eyebrow::before,.hero-eyebrow::after{content:'';flex:1;max-width:60px;height:1px;background:var(--teal);opacity:.4}
-.hero h1{
-  font-size:clamp(1.8rem,4.5vw,2.8rem);font-weight:700;letter-spacing:-.5px;
-  margin-bottom:.75rem;line-height:1.15;
-}
+.hero h1{font-size:clamp(1.8rem,4.5vw,2.8rem);font-weight:700;letter-spacing:-.5px;margin-bottom:.75rem;line-height:1.15}
 .hero h1 em{color:var(--teal);font-style:normal}
 .hero p{color:var(--text2);font-size:1rem;max-width:480px;margin:0 auto;line-height:1.7;font-weight:300}
-
-/* ── CARDS ── */
 .card{
   background:var(--surface);border:1px solid var(--border);
   border-radius:var(--radius);padding:1.75rem;box-shadow:var(--shadow);
@@ -104,12 +70,9 @@ main{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:2.5rem 1.
 }
 .card-label{
   font-family:var(--mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--teal);margin-bottom:1.25rem;
-  display:flex;align-items:center;gap:8px;
+  color:var(--teal);margin-bottom:1.25rem;display:flex;align-items:center;gap:8px;
 }
 .card-label::before{content:'';width:14px;height:2px;background:var(--teal);border-radius:1px}
-
-/* ── STEPS ── */
 .steps-row{display:flex;gap:.5rem;margin-bottom:1.75rem}
 .step-btn{
   flex:1;padding:10px 8px;border-radius:8px;font-size:.78rem;font-weight:500;
@@ -119,94 +82,56 @@ main{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:2.5rem 1.
 .step-btn.done{color:var(--green);border-color:rgba(34,197,94,.25);background:var(--green-dim)}
 .step-btn.active{color:var(--teal);border-color:rgba(0,201,177,.35);background:var(--teal-dim)}
 .step-num{font-family:var(--mono);font-size:.6rem;display:block;margin-bottom:2px;opacity:.7}
-
-/* ── DROP ZONE ── */
 .dropzone{
   border:2px dashed var(--border);border-radius:var(--radius-sm);
-  padding:3rem 2rem;text-align:center;cursor:pointer;
-  transition:all .25s;position:relative;background:var(--surface2);
+  padding:3rem 2rem;text-align:center;cursor:pointer;transition:all .25s;
+  position:relative;background:var(--surface2);
 }
 .dropzone:hover,.dropzone.dragover{
   border-color:var(--teal);background:var(--teal-dim);
   transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,201,177,.1);
 }
-.dropzone input[type=file]{
-  position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;
-}
-.dz-icon{font-size:2.5rem;margin-bottom:.75rem;display:block;
-  animation:float 3.5s ease-in-out infinite}
+.dropzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.dz-icon{font-size:2.5rem;margin-bottom:.75rem;display:block;animation:float 3.5s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .dz-title{font-size:1.05rem;font-weight:600;margin-bottom:.3rem}
 .dz-sub{font-size:.82rem;color:var(--text2)}
-.dz-formats{
-  margin-top:.75rem;display:flex;justify-content:center;gap:.4rem;flex-wrap:wrap;
-}
+.dz-formats{margin-top:.75rem;display:flex;justify-content:center;gap:.4rem;flex-wrap:wrap}
 .fmt-pill{
   font-family:var(--mono);font-size:.6rem;padding:2px 7px;border-radius:4px;
   background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);color:var(--blue);
 }
 .dropzone.has-file{border-style:solid;border-color:var(--green);background:var(--green-dim)}
-
-/* ── FILE BADGE ── */
 .file-badge{
   display:none;align-items:center;gap:10px;
   background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);
-  border-radius:8px;padding:.65rem 1rem;margin-top:.75rem;
-  font-size:.85rem;color:#6ee7b7;
+  border-radius:8px;padding:.65rem 1rem;margin-top:.75rem;font-size:.85rem;color:#6ee7b7;
 }
 .file-badge.show{display:flex}
 .file-badge strong{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .file-badge-size{font-family:var(--mono);font-size:.72rem;color:var(--text2);flex-shrink:0}
-.clear-btn{
-  background:none;border:none;cursor:pointer;color:var(--red);
-  font-size:1rem;padding:0 4px;line-height:1;flex-shrink:0;opacity:.8;
-}
+.clear-btn{background:none;border:none;cursor:pointer;color:var(--red);font-size:1rem;padding:0 4px;line-height:1;flex-shrink:0;opacity:.8}
 .clear-btn:hover{opacity:1}
-
-/* ── FORMAT BADGE ── */
 .format-detected{
-  display:none;align-items:center;gap:8px;
-  font-family:var(--mono);font-size:.72rem;
+  display:none;align-items:center;gap:8px;font-family:var(--mono);font-size:.72rem;
   padding:.5rem .85rem;border-radius:6px;margin-top:.6rem;
 }
 .format-detected.show{display:flex}
-.format-detected.old-format{
-  background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);color:#93c5fd;
-}
-.format-detected.new-format{
-  background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:#fcd34d;
-}
-
-/* ── BUTTONS ── */
+.format-old{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);color:#93c5fd}
+.format-new{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:#fcd34d}
 .btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:.7rem 1.5rem;border-radius:8px;font-family:var(--font);
-  font-size:.9rem;font-weight:600;cursor:pointer;border:none;
+  display:inline-flex;align-items:center;gap:8px;padding:.7rem 1.5rem;border-radius:8px;
+  font-family:var(--font);font-size:.9rem;font-weight:600;cursor:pointer;border:none;
   transition:all .18s;text-decoration:none;
 }
-.btn-primary{
-  background:var(--teal);color:#0f1117;
-  box-shadow:0 3px 16px rgba(0,201,177,.3);
-}
-.btn-primary:hover:not(:disabled){
-  background:#00dfc5;transform:translateY(-1px);box-shadow:0 5px 22px rgba(0,201,177,.4);
-}
+.btn-primary{background:var(--teal);color:#0f1117;box-shadow:0 3px 16px rgba(0,201,177,.3)}
+.btn-primary:hover:not(:disabled){background:#00dfc5;transform:translateY(-1px);box-shadow:0 5px 22px rgba(0,201,177,.4)}
 .btn-primary:disabled{opacity:.45;cursor:not-allowed;transform:none}
-.btn-outline{
-  background:transparent;color:var(--teal);
-  border:1px solid rgba(0,201,177,.35);
-}
+.btn-outline{background:transparent;color:var(--teal);border:1px solid rgba(0,201,177,.35)}
 .btn-outline:hover{background:var(--teal-dim)}
-.btn-download{
-  background:linear-gradient(135deg,var(--green),#16a34a);
-  color:#fff;box-shadow:0 4px 20px rgba(34,197,94,.3);
-  font-size:1rem;padding:.85rem 2rem;
-}
+.btn-download{background:linear-gradient(135deg,var(--green),#16a34a);color:#fff;box-shadow:0 4px 20px rgba(34,197,94,.3);font-size:1rem;padding:.85rem 2rem}
 .btn-download:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(34,197,94,.4)}
-
 .actions{display:flex;gap:.75rem;margin-top:1.25rem;flex-wrap:wrap;align-items:center}
-
-/* ── SPINNER ── */
 .spin{
   width:16px;height:16px;border-radius:50%;
   border:2.5px solid rgba(15,17,23,.3);border-top-color:#0f1117;
@@ -214,41 +139,23 @@ main{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:2.5rem 1.
 }
 .spin.show{display:block}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* ── PROGRESS ── */
 .progress-wrap{display:none;margin-top:1rem}
 .progress-wrap.show{display:block}
 .progress-track{height:4px;background:var(--surface2);border-radius:99px;overflow:hidden;margin-bottom:6px}
-.progress-bar{
-  height:100%;background:linear-gradient(90deg,var(--teal),#00a8d4);
-  border-radius:99px;width:0%;transition:width .35s ease;
-}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--teal),#00a8d4);border-radius:99px;width:0%;transition:width .35s ease}
 .progress-label{font-size:.75rem;color:var(--text2);font-family:var(--mono)}
-
-/* ── ALERTS ── */
 .alert{
   display:flex;gap:10px;align-items:flex-start;
   padding:.8rem 1rem;border-radius:8px;font-size:.83rem;line-height:1.55;margin-top:.75rem;
 }
 .alert-ok{background:var(--green-dim);color:#6ee7b7;border:1px solid rgba(34,197,94,.25)}
 .alert-warn{background:rgba(245,158,11,.08);color:#fcd34d;border:1px solid rgba(245,158,11,.25)}
-.alert-err{background:rgba(239,68,68,.08);color:#fca5a5;border:1px solid rgba(239,68,68,.2)}
+.alert-err{background:var(--red-dim);color:#fca5a5;border:1px solid rgba(239,68,68,.2)}
 .alert-icon{flex-shrink:0;font-size:.95rem;margin-top:1px}
-
-/* ── STATS ── */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.75rem;margin-bottom:1.25rem}
-.stat-box{
-  background:var(--surface2);border:1px solid var(--border);
-  border-radius:var(--radius-sm);padding:1rem;text-align:center;
-}
-.stat-n{
-  font-size:2rem;font-weight:700;line-height:1;
-  margin-bottom:4px;background:linear-gradient(135deg,var(--teal),#00a8d4);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
+.stat-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;text-align:center}
+.stat-n{font-size:2rem;font-weight:700;line-height:1;margin-bottom:4px;background:linear-gradient(135deg,var(--teal),#00a8d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .stat-l{font-size:.68rem;color:var(--text2);text-transform:uppercase;letter-spacing:.08em;font-family:var(--mono)}
-
-/* ── DOWNLOAD CARD ── */
 .download-card{
   background:linear-gradient(135deg,rgba(0,201,177,.06),rgba(0,168,212,.04));
   border:1px solid rgba(0,201,177,.2);border-radius:var(--radius);
@@ -256,33 +163,26 @@ main{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:2.5rem 1.
 }
 .download-card h3{font-size:1.2rem;font-weight:700;margin-bottom:.4rem}
 .download-card p{color:var(--text2);font-size:.85rem;margin-bottom:1.25rem}
-
-/* ── PREVIEW TABLE ── */
 .table-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--border);margin-top:1rem}
 table{width:100%;border-collapse:collapse;font-size:.75rem}
 thead th{
-  background:#0a0d14;color:var(--teal);
-  padding:.55rem .75rem;text-align:left;
-  font-weight:600;letter-spacing:.06em;font-size:.65rem;text-transform:uppercase;white-space:nowrap;
-  font-family:var(--mono);border-bottom:1px solid var(--border);
+  background:#0a0d14;color:var(--teal);padding:.55rem .75rem;text-align:left;
+  font-weight:600;letter-spacing:.06em;font-size:.65rem;text-transform:uppercase;
+  white-space:nowrap;font-family:var(--mono);border-bottom:1px solid var(--border);
 }
 tbody tr{border-bottom:1px solid rgba(46,51,80,.5)}
 tbody tr:hover{background:var(--surface2)}
 tbody td{padding:.5rem .75rem;white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis}
-.badge{
-  display:inline-block;padding:1px 6px;border-radius:4px;
-  font-family:var(--mono);font-size:.65rem;font-weight:500;
-}
+.badge{display:inline-block;padding:1px 6px;border-radius:4px;font-family:var(--mono);font-size:.65rem;font-weight:500}
 .badge-13{background:rgba(34,197,94,.12);color:#6ee7b7;border:1px solid rgba(34,197,94,.2)}
 .badge-41{background:rgba(168,85,247,.12);color:#c4b5fd;border:1px solid rgba(168,85,247,.2)}
 .code{font-family:var(--mono);font-size:.72rem;color:var(--teal)}
-
-/* ── GITHUB SECTION ── */
+/* Warnings list */
+.warn-list{margin-top:0;padding-left:0;list-style:none}
+.warn-list li{font-family:var(--mono);font-size:.72rem;padding:2px 0;color:#fcd34d;opacity:.9}
+/* GitHub section */
 .github-section{margin-top:2rem}
-details{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);overflow:hidden;
-}
+details{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
 details summary{
   padding:1.1rem 1.5rem;cursor:pointer;font-weight:600;font-size:.9rem;
   display:flex;align-items:center;gap:10px;list-style:none;
@@ -294,110 +194,76 @@ summary::after{content:'›';margin-left:auto;font-size:1.2rem;color:var(--teal)
 details[open] summary::after{transform:rotate(90deg)}
 .github-body{padding:1.5rem}
 .github-steps{list-style:none;display:flex;flex-direction:column;gap:.75rem}
-.github-steps li{
-  display:flex;align-items:flex-start;gap:12px;
-  font-size:.85rem;line-height:1.6;color:var(--text2);
-}
+.github-steps li{display:flex;align-items:flex-start;gap:12px;font-size:.85rem;line-height:1.6;color:var(--text2)}
 .github-steps .n{
   width:22px;height:22px;border-radius:50%;flex-shrink:0;
   background:var(--teal-dim);border:1px solid rgba(0,201,177,.3);
   color:var(--teal);font-size:.65rem;font-weight:700;font-family:var(--mono);
   display:flex;align-items:center;justify-content:center;margin-top:1px;
 }
-.icode{
-  font-family:var(--mono);font-size:.75rem;
-  background:rgba(0,201,177,.08);border:1px solid rgba(0,201,177,.2);
-  color:var(--teal);padding:1px 6px;border-radius:4px;
-}
-.highlight-box{
-  background:rgba(0,201,177,.04);border:1px solid rgba(0,201,177,.15);
-  border-radius:8px;padding:1rem;margin-top:1rem;
-  font-size:.82rem;color:var(--text2);line-height:1.65;
-}
+.icode{font-family:var(--mono);font-size:.75rem;background:rgba(0,201,177,.08);border:1px solid rgba(0,201,177,.2);color:var(--teal);padding:1px 6px;border-radius:4px}
+.highlight-box{background:rgba(0,201,177,.04);border:1px solid rgba(0,201,177,.15);border-radius:8px;padding:1rem;margin-top:1rem;font-size:.82rem;color:var(--text2);line-height:1.65}
 .highlight-box strong{color:var(--teal)}
-
-/* ── FOOTER ── */
-footer{
-  text-align:center;padding:1.5rem;font-size:.75rem;
-  color:var(--text3);border-top:1px solid var(--border);
-  font-family:var(--mono);letter-spacing:.04em;
-}
+footer{text-align:center;padding:1.5rem;font-size:.75rem;color:var(--text3);border-top:1px solid var(--border);font-family:var(--mono);letter-spacing:.04em}
 footer span{color:var(--teal)}
-
-/* ── RESPONSIVE ── */
-@media(max-width:600px){
-  .steps-row{display:none}
-  .hero h1{font-size:1.6rem}
-}
+@media(max-width:600px){.steps-row{display:none}.hero h1{font-size:1.6rem}}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="logo">
     <div class="logo-icon">📊</div>
     <div class="logo-text">Cloud<span>Beds</span> → SIIGO</div>
   </div>
   <div class="header-right">
-    <span class="version">v3.0</span>
+    <span class="version">v4.0</span>
     <span class="logo-badge">ARCHIVO PLANO TERCEROS</span>
   </div>
 </header>
 
 <main>
-
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow">Billing Automation · Colombia</div>
+  <div class="hero-eyebrow">Billing Automation · Colombia · SIIGO</div>
   <h1>Convert <em>CloudBeds</em> exports<br/>into perfect SIIGO files</h1>
-  <p>Upload any CloudBeds reservation file — old or new format — and instantly get your <strong>Archivo Plano Terceros</strong> with exact colors, fonts, and structure.</p>
+  <p>Upload any CloudBeds reservation file — any format — and get your <strong>Archivo Plano Terceros</strong> with exact colors, fonts, columns, and max 10-digit phones.</p>
 </div>
 
-<!-- STEP INDICATORS -->
 <div class="steps-row">
   <div class="step-btn active" id="s1"><span class="step-num">01</span>Upload</div>
   <div class="step-btn" id="s2"><span class="step-num">02</span>Process</div>
   <div class="step-btn" id="s3"><span class="step-num">03</span>Download</div>
 </div>
 
-<!-- UPLOAD CARD -->
 <div class="card">
   <div class="card-label">Upload CloudBeds File</div>
-
   <div class="dropzone" id="dropzone">
     <input type="file" id="fileInput" accept=".xlsx,.xls,.csv"/>
     <span class="dz-icon">☁️</span>
     <div class="dz-title">Drop your CloudBeds export here</div>
-    <div class="dz-sub">or click to browse your files</div>
+    <div class="dz-sub">or click to browse · any format accepted</div>
     <div class="dz-formats">
       <span class="fmt-pill">.xlsx</span>
       <span class="fmt-pill">.xls</span>
       <span class="fmt-pill">.csv</span>
-      <span class="fmt-pill">Old format ✓</span>
-      <span class="fmt-pill">New format ✓</span>
+      <span class="fmt-pill">Full format ✓</span>
+      <span class="fmt-pill">Summary format ✓</span>
     </div>
   </div>
-
   <div class="file-badge" id="fileBadge">
     <span>📄</span>
     <strong id="fileName"></strong>
     <span class="file-badge-size" id="fileSize"></span>
-    <button class="clear-btn" onclick="clearFile()" title="Remove file">✕</button>
+    <button class="clear-btn" onclick="clearFile()" title="Remove">✕</button>
   </div>
-
   <div class="format-detected" id="formatBadge">
-    <span id="formatIcon">📋</span>
-    <span id="formatText"></span>
+    <span id="formatIcon">📋</span><span id="formatText"></span>
   </div>
-
   <div id="alertBox"></div>
-
   <div class="progress-wrap" id="progressWrap">
     <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
-    <div class="progress-label" id="progressLabel">Analyzing file…</div>
+    <div class="progress-label" id="progressLabel">Processing…</div>
   </div>
-
   <div class="actions">
     <button class="btn btn-outline" id="previewBtn" disabled onclick="doPreview()">👁 Preview</button>
     <button class="btn btn-primary" id="convertBtn" disabled onclick="doConvert()">
@@ -407,30 +273,24 @@ footer span{color:var(--teal)}
   </div>
 </div>
 
-<!-- RESULT SECTION -->
 <div id="resultSection" style="display:none">
-
   <div class="stats-grid" id="statsGrid"></div>
-
+  <div id="warnBox"></div>
   <div class="download-card">
     <h3>✅ ARCHIVO_PLANO_TERCEROS ready</h3>
-    <p id="dlSubtitle">Your SIIGO file has been generated with exact formatting</p>
-    <button class="btn btn-download" id="dlBtn" onclick="triggerDownload()">
-      ⬇ Download ARCHIVO_PLANO_TERCEROS.xlsx
-    </button>
+    <p id="dlSubtitle">Generated with exact SIIGO formatting</p>
+    <button class="btn btn-download" onclick="triggerDownload()">⬇ Download ARCHIVO_PLANO_TERCEROS.xlsx</button>
   </div>
-
   <div class="card" id="previewCard" style="display:none">
-    <div class="card-label">Preview — First 50 records</div>
+    <div class="card-label">Preview · First 50 records</div>
     <div id="previewCount" style="font-size:.78rem;color:var(--text2);margin-bottom:.75rem"></div>
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>#</th><th>ID</th><th>Type</th>
+            <th>#</th><th>ID / Doc</th><th>Type</th>
             <th>First Name(s)</th><th>Last Name(s)</th>
-            <th>Country</th><th>Dept</th><th>City</th>
-            <th>Phone</th><th>Email</th>
+            <th>Country</th><th>Phone (≤10)</th><th>Email</th>
           </tr>
         </thead>
         <tbody id="previewBody"></tbody>
@@ -439,444 +299,526 @@ footer span{color:var(--teal)}
   </div>
 </div>
 
-<!-- GITHUB SECTION -->
 <div class="github-section">
   <details>
-    <summary>🚀 How to publish on GitHub Pages and share with your boss</summary>
+    <summary>⚙️ How to update this page on GitHub</summary>
     <div class="github-body">
       <ul class="github-steps">
-        <li>
-          <div class="n">1</div>
-          <div>Go to <strong>github.com</strong> and create a free account (if you don't have one).</div>
-        </li>
-        <li>
-          <div class="n">2</div>
-          <div>Click <strong>+</strong> → <strong>New repository</strong>. Name it <span class="icode">siigo-converter</span>. Set it <strong>Public</strong> and click <em>Create repository</em>.</div>
-        </li>
-        <li>
-          <div class="n">3</div>
-          <div>Click <strong>"uploading an existing file"</strong> → drag this HTML file in → write a commit message → click <strong>Commit changes</strong>.</div>
-        </li>
-        <li>
-          <div class="n">4</div>
-          <div>Go to <strong>Settings</strong> → <strong>Pages</strong> (left sidebar). Under <em>Branch</em>, select <span class="icode">main</span> → click <strong>Save</strong>. Wait ~2 minutes.</div>
-        </li>
-        <li>
-          <div class="n">5</div>
-          <div>Your public URL will be: <span class="icode">https://YOUR-USERNAME.github.io/siigo-converter/</span> — share this with your boss! Works on any device, no installation needed.</div>
-        </li>
-        <li>
-          <div class="n">6</div>
-          <div>To update: just upload a new version of the HTML file to the same repository. GitHub Pages updates automatically.</div>
-        </li>
+        <li><div class="n">1</div><div>Go to <strong>github.com/Lasmarakazz/siigo-converter</strong></div></li>
+        <li><div class="n">2</div><div>Click on the file <span class="icode">index.html</span> in the file list</div></li>
+        <li><div class="n">3</div><div>Click the <strong>pencil icon ✏️</strong> (top-right of the file) → "Edit this file"</div></li>
+        <li><div class="n">4</div><div>Press <span class="icode">Ctrl+A</span> to select all, then paste the new HTML code</div></li>
+        <li><div class="n">5</div><div>Scroll down → click <strong>"Commit changes"</strong> → <strong>"Commit changes"</strong> again</div></li>
+        <li><div class="n">6</div><div>Wait ~1 minute → visit <span class="icode">lasmarakazz.github.io/siigo-converter/</span> — done! 🎉</div></li>
       </ul>
       <div class="highlight-box">
-        🔒 <strong>100% private & safe</strong> — all processing happens in the browser. Your guest data <strong>never leaves your computer</strong> and is never sent to any server. The tool works completely offline after loading.
+        💡 <strong>Tip:</strong> Alternatively, delete <span class="icode">index.html</span> and upload the new file renamed as <span class="icode">index.html</span>. Either way works. Changes are live in ~60 seconds.
       </div>
     </div>
   </details>
 </div>
-
 </main>
 
 <footer>
-  CloudBeds → SIIGO Converter &nbsp;·&nbsp;
-  <span>Generates ARCHIVO PLANO TERCEROS</span> &nbsp;·&nbsp;
-  Exact format: Calibri 12pt Bold headers · <span>FF00AAFF</span> blue columns &nbsp;·&nbsp;
-  100% client-side
+  CloudBeds → SIIGO &nbsp;·&nbsp; <span>Hoja1 · Calibri 12pt Bold · FF00AAFF blue cols · Max 10-digit phones</span> &nbsp;·&nbsp; 100% client-side · v4.0
 </footer>
 
 <script>
-// ════════════════════════════════════════════════════════════════════════
-// SIIGO COLUMN DEFINITIONS
-// ════════════════════════════════════════════════════════════════════════
-const SIIGO_COLS = [
-  {h:'Identificación (Obligatorio)',     required:true,  w:14.27},
-  {h:'Dígito de verificación',          required:false, w:10.18},
-  {h:'Código Sucursal',                 required:false, w:9.18},
-  {h:'Tipo identificación (Obligatorio)',required:true,  w:19.27},
-  {h:'Tipo (Obligatorio)',              required:true,  w:13.54},
-  {h:'Razón social (Obligatorio)',      required:true,  w:13.54},
-  {h:'Nombres del tercero (Obligatorio)',required:true, w:27.27},
-  {h:'Apellidos del tercero (Obligatorio)',required:true,w:21.54},
-  {h:'Nombre Comercial',               required:false, w:51.0},
-  {h:'Dirección',                      required:false, w:39.45},
-  {h:'Código país',                    required:false, w:7.73},
-  {h:'Código departamento/estado',     required:false, w:23.0},
-  {h:'Código ciudad',                  required:false, w:7.73},
-  {h:'Indicativo teléfono principal',  required:false, w:18.54},
-  {h:'Teléfono principal',             required:false, w:13.82},
-  {h:'Extensión teléfono principal',   required:false, w:18.54},
-  {h:'Tipo de régimen IVA',            required:false, w:12.82},
-  {h:'Código Responsabilidad fiscal',  required:false, w:22.54},
-  {h:'Código Postal',                  required:false, w:7.73},
-  {h:'Nombres contacto principal',     required:false, w:19.0},
-  {h:'Apellidos contacto principal',   required:false, w:19.0},
-  {h:'Indicativo teléfono contacto principal',required:false,w:19.73},
-  {h:'Teléfono contacto principal',    required:false, w:19.0},
-  {h:'Extensión teléfono contacto principal',required:false,w:19.45},
-  {h:'Correo electrónico contacto principal',required:false,w:30.82},
-  {h:'Identificación del cobrador',    required:false, w:14.27},
-  {h:'Identificación del vendedor',    required:false, w:14.27},
-  {h:'Otros',                          required:false, w:6.45},
-  {h:'Clientes',                       required:false, w:8.54},
-  {h:'Proveedor',                      required:false, w:11.27},
-  {h:'Estado',                         required:false, w:7.54},
+// ══════════════════════════════════════════════════════════════
+// SIIGO 31 COLUMNS - exact from MODELO Final
+// Required (white FFFFFFFF): cols 1,4,5,6,7,8 (index 0,3,4,5,6,7)
+// Optional (blue FF00AAFF): all others
+// ══════════════════════════════════════════════════════════════
+const SIIGO_COLS=[
+  {h:'Identificación (Obligatorio)',              req:true,  w:14.27},
+  {h:'Dígito de verificación',                   req:false, w:10.18},
+  {h:'Código Sucursal',                          req:false, w:9.18},
+  {h:'Tipo identificación (Obligatorio)',         req:true,  w:19.27},
+  {h:'Tipo (Obligatorio)',                        req:true,  w:13.54},
+  {h:'Razón social (Obligatorio)',               req:true,  w:13.54},
+  {h:'Nombres del tercero (Obligatorio)',         req:true,  w:27.27},
+  {h:'Apellidos del tercero (Obligatorio)',       req:true,  w:21.54},
+  {h:'Nombre Comercial',                         req:false, w:51.0},
+  {h:'Dirección',                                req:false, w:39.45},
+  {h:'Código país',                              req:false, w:7.73},
+  {h:'Código departamento/estado',               req:false, w:23.0},
+  {h:'Código ciudad',                            req:false, w:7.73},
+  {h:'Indicativo teléfono principal',            req:false, w:18.54},
+  {h:'Teléfono principal',                       req:false, w:13.82},
+  {h:'Extensión teléfono principal',             req:false, w:18.54},
+  {h:'Tipo de régimen IVA',                      req:false, w:12.82},
+  {h:'Código Responsabilidad fiscal',            req:false, w:22.54},
+  {h:'Código Postal',                            req:false, w:7.73},
+  {h:'Nombres contacto principal',               req:false, w:19.0},
+  {h:'Apellidos contacto principal',             req:false, w:19.0},
+  {h:'Indicativo teléfono contacto principal',   req:false, w:19.73},
+  {h:'Teléfono contacto principal',              req:false, w:19.0},
+  {h:'Extensión teléfono contacto principal',    req:false, w:19.45},
+  {h:'Correo electrónico contacto principal',    req:false, w:30.82},
+  {h:'Identificación del cobrador',              req:false, w:14.27},
+  {h:'Identificación del vendedor',              req:false, w:14.27},
+  {h:'Otros',                                    req:false, w:6.45},
+  {h:'Clientes',                                 req:false, w:8.54},
+  {h:'Proveedor',                                req:false, w:11.27},
+  {h:'Estado',                                   req:false, w:7.54},
 ];
 
-// ════════════════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════════
 // COUNTRY LOOKUP (Spanish name → SIIGO codes)
-// Colombia forced to Bogotá D.C. (dept=11, city=11001)
-// ════════════════════════════════════════════════════════════════════════
-const COUNTRY_BY_NAME = {
-  'Colombia':{'code':'COL','dept':'11','city':'11001'},
-  'Ecuador':{'code':'ECU','dept':'01','city':'01001'},
-  'Perú':{'code':'PER','dept':'05','city':'05001'},
-  'Afganistán':{'code':'AFG','dept':'01','city':'0101'},
-  'Albania':{'code':'ALB','dept':'01','city':'0101'},
-  'Alemania':{'code':'DEU','dept':'01','city':'0101'},
-  'Angola':{'code':'AGO','dept':'01','city':'0101'},
-  'Arabia Saudita':{'code':'SAU','dept':'01','city':'0101'},
-  'Argelia':{'code':'DZA','dept':'01','city':'0101'},
-  'Argentina':{'code':'ARG','dept':'01','city':'0101'},
-  'Armenia':{'code':'ARM','dept':'01','city':'0101'},
-  'Aruba':{'code':'ABW','dept':'02','city':'0201'},
-  'Australia':{'code':'AUS','dept':'01','city':'0101'},
-  'Austria':{'code':'AUT','dept':'01','city':'0101'},
-  'Azerbaiyán':{'code':'AZE','dept':'01','city':'0101'},
-  'Bahamas':{'code':'BHS','dept':'01','city':'0101'},
-  'Bangladés':{'code':'BGD','dept':'01','city':'0101'},
-  'Barbados':{'code':'BRB','dept':'01','city':'0101'},
-  'Baréin':{'code':'BHR','dept':'01','city':'0101'},
-  'Bélgica':{'code':'BEL','dept':'01','city':'0101'},
-  'Belice':{'code':'BLZ','dept':'01','city':'0101'},
-  'Benín':{'code':'BEN','dept':'01','city':'0101'},
-  'Bielorrusia':{'code':'BLR','dept':'01','city':'0101'},
-  'Bolivia':{'code':'BOL','dept':'01','city':'0101'},
-  'Bosnia-Herzegovina':{'code':'BIH','dept':'01','city':'0101'},
-  'Botsuana':{'code':'BWA','dept':'01','city':'0101'},
-  'Brasil':{'code':'BRA','dept':'04','city':'0401'},
-  'Brunéi':{'code':'BRN','dept':'01','city':'0101'},
-  'Bulgaria':{'code':'BGR','dept':'01','city':'0101'},
-  'Burkina Faso':{'code':'BFA','dept':'01','city':'0101'},
-  'Burundi':{'code':'BDI','dept':'01','city':'0101'},
-  'Bután':{'code':'BTN','dept':'01','city':'0101'},
-  'Cabo Verde':{'code':'CPV','dept':'01','city':'0101'},
-  'Camboya':{'code':'KHM','dept':'01','city':'0101'},
-  'Camerún':{'code':'CMR','dept':'01','city':'0101'},
-  'Canadá':{'code':'CAN','dept':'01','city':'0101'},
-  'Chad':{'code':'TCD','dept':'01','city':'0101'},
-  'Chile':{'code':'CHL','dept':'01','city':'0101'},
-  'China':{'code':'CHN','dept':'01','city':'0101'},
-  'Chipre':{'code':'CYP','dept':'01','city':'0101'},
-  'Comoras':{'code':'COM','dept':'01','city':'0101'},
-  'Congo':{'code':'COG','dept':'01','city':'0101'},
-  'Costa Rica':{'code':'CRI','dept':'01','city':'0101'},
-  'Croacia':{'code':'HRV','dept':'01','city':'0101'},
-  'Cuba':{'code':'CUB','dept':'01','city':'0101'},
-  'Curazao':{'code':'CUW','dept':'01','city':'0101'},
-  'Dinamarca':{'code':'DNK','dept':'01','city':'0101'},
-  'Dominica':{'code':'DMA','dept':'01','city':'0101'},
-  'Egipto':{'code':'EGY','dept':'01','city':'0101'},
-  'El Salvador':{'code':'VCT','dept':'01','city':'0101'},
-  'Emiratos Árabes Unidos':{'code':'ARE','dept':'01','city':'0101'},
-  'Eritrea':{'code':'ERI','dept':'01','city':'0101'},
-  'Eslovaquia':{'code':'SVN','dept':'01','city':'0101'},
-  'Eslovenia':{'code':'SVK','dept':'01','city':'0101'},
-  'España':{'code':'ESP','dept':'09','city':'0101'},
-  'Estados Unidos':{'code':'USA','dept':'47','city':'98032'},
-  'Estonia':{'code':'EST','dept':'01','city':'0101'},
-  'Etiopía':{'code':'ETH','dept':'01','city':'0101'},
-  'Filipinas':{'code':'PHL','dept':'01','city':'0101'},
-  'Finlandia':{'code':'FIN','dept':'01','city':'0101'},
-  'Fiyi':{'code':'FJI','dept':'01','city':'0101'},
-  'Francia':{'code':'FRA','dept':'06','city':'0601'},
-  'Gabón':{'code':'GAB','dept':'01','city':'0101'},
-  'Gambia':{'code':'GMB','dept':'01','city':'0101'},
-  'Georgia':{'code':'GEO','dept':'01','city':'0101'},
-  'Ghana':{'code':'GHA','dept':'01','city':'0101'},
-  'Grecia':{'code':'GRC','dept':'01','city':'0101'},
-  'Groenlandia':{'code':'GRL','dept':'01','city':'0101'},
-  'Guatemala':{'code':'GTM','dept':'01','city':'0101'},
-  'Guyana':{'code':'GUY','dept':'01','city':'0101'},
-  'Haití':{'code':'HTI','dept':'01','city':'0101'},
-  'Honduras':{'code':'HND','dept':'01','city':'0101'},
-  'Hong Kong':{'code':'HKG','dept':'01','city':'0101'},
-  'Hungría':{'code':'HUN','dept':'01','city':'0101'},
-  'India':{'code':'IND','dept':'01','city':'0101'},
-  'Indonesia':{'code':'IDN','dept':'01','city':'0101'},
-  'Irak':{'code':'IRQ','dept':'01','city':'0101'},
-  'Irán':{'code':'IRN','dept':'01','city':'0101'},
-  'Irlanda':{'code':'IRL','dept':'01','city':'0101'},
-  'Islandia':{'code':'ISL','dept':'01','city':'0101'},
-  'Israel':{'code':'ISR','dept':'01','city':'0101'},
-  'Italia':{'code':'ITA','dept':'02','city':'0201'},
-  'Jamaica':{'code':'JAM','dept':'01','city':'0101'},
-  'Japón':{'code':'JPN','dept':'01','city':'0101'},
-  'Jordania':{'code':'JOR','dept':'01','city':'0101'},
-  'Kazajistán':{'code':'KAZ','dept':'01','city':'0101'},
-  'Kenia':{'code':'KEN','dept':'01','city':'0101'},
-  'Kirguistán':{'code':'KGZ','dept':'01','city':'0101'},
-  'Kuwait':{'code':'KWT','dept':'01','city':'0101'},
-  'Laos':{'code':'LAO','dept':'01','city':'0101'},
-  'Lesoto':{'code':'LSO','dept':'01','city':'0101'},
-  'Letonia':{'code':'LVA','dept':'01','city':'0101'},
-  'Líbano':{'code':'LBN','dept':'01','city':'0101'},
-  'Liberia':{'code':'LBR','dept':'01','city':'0101'},
-  'Libia':{'code':'LBY','dept':'01','city':'0101'},
-  'Liechtenstein':{'code':'LIE','dept':'01','city':'0101'},
-  'Lituania':{'code':'LTU','dept':'01','city':'0101'},
-  'Luxemburgo':{'code':'LUX','dept':'01','city':'0101'},
-  'Madagascar':{'code':'MDG','dept':'01','city':'0101'},
-  'Malasia':{'code':'MYS','dept':'01','city':'0101'},
-  'Maldivas':{'code':'MDV','dept':'01','city':'0101'},
-  'Malí':{'code':'MLI','dept':'01','city':'0101'},
-  'Malta':{'code':'MLT','dept':'01','city':'0101'},
-  'Marruecos':{'code':'MAR','dept':'01','city':'0101'},
-  'Mauricio':{'code':'MUS','dept':'01','city':'0101'},
-  'Mauritania':{'code':'MRT','dept':'01','city':'0101'},
-  'México':{'code':'MEX','dept':'15','city':'1501'},
-  'Moldavia':{'code':'MDA','dept':'01','city':'0101'},
-  'Mónaco':{'code':'MCO','dept':'01','city':'0101'},
-  'Mongolia':{'code':'MNG','dept':'01','city':'0101'},
-  'Montenegro':{'code':'MNE','dept':'01','city':'0101'},
-  'Mozambique':{'code':'MOZ','dept':'01','city':'0101'},
-  'Namibia':{'code':'NAM','dept':'01','city':'0101'},
-  'Nauru':{'code':'NRU','dept':'01','city':'0101'},
-  'Nepal':{'code':'NPL','dept':'01','city':'0101'},
-  'Nicaragua':{'code':'NIC','dept':'03','city':'0301'},
-  'Níger':{'code':'NER','dept':'01','city':'0101'},
-  'Nigeria':{'code':'NGA','dept':'01','city':'0101'},
-  'Noruega':{'code':'NOR','dept':'01','city':'0101'},
-  'Nueva Zelanda':{'code':'NZL','dept':'01','city':'0101'},
-  'Omán':{'code':'OMN','dept':'01','city':'0101'},
-  'Países Bajos':{'code':'NLD','dept':'10','city':'1001'},
-  'Pakistán':{'code':'PAK','dept':'01','city':'0101'},
-  'Palestina':{'code':'PSE','dept':'01','city':'0101'},
-  'Panamá':{'code':'PAN','dept':'01','city':'0101'},
-  'Paraguay':{'code':'PRY','dept':'01','city':'0101'},
-  'Polonia':{'code':'POL','dept':'10','city':'1001'},
-  'Portugal':{'code':'PRT','dept':'01','city':'0101'},
-  'Puerto Rico':{'code':'PRI','dept':'01','city':'0101'},
-  'Qatar':{'code':'QAT','dept':'01','city':'0101'},
-  'Reino Unido':{'code':'GBR','dept':'01','city':'0101'},
-  'República Centroafricana':{'code':'CAF','dept':'01','city':'0101'},
-  'República Checa':{'code':'CZE','dept':'01','city':'0101'},
-  'República Democrática Del Congo':{'code':'COD','dept':'01','city':'0101'},
-  'República Dominicana':{'code':'DOM','dept':'01','city':'0101'},
-  'Ruanda':{'code':'RWA','dept':'01','city':'0101'},
-  'Rumania':{'code':'ROU','dept':'08','city':'0801'},
-  'Rusia':{'code':'RUS','dept':'01','city':'0101'},
-  'Senegal':{'code':'SOM','dept':'01','city':'0101'},
-  'Serbia':{'code':'SRB','dept':'01','city':'0101'},
-  'Singapur':{'code':'SGP','dept':'01','city':'0101'},
-  'Sri Lanka':{'code':'LKA','dept':'01','city':'0101'},
-  'Sudáfrica':{'code':'ZAF','dept':'01','city':'0101'},
-  'Sudán':{'code':'SDN','dept':'01','city':'0101'},
-  'Suecia':{'code':'SEN','dept':'01','city':'0101'},
-  'Suiza':{'code':'CHE','dept':'01','city':'0101'},
-  'Surinam':{'code':'SUR','dept':'01','city':'0101'},
-  'Tailandia':{'code':'THA','dept':'01','city':'0101'},
-  'Taiwán':{'code':'TWN','dept':'01','city':'0101'},
-  'Tanzania':{'code':'TZA','dept':'01','city':'0101'},
-  'Turquía':{'code':'TUR','dept':'01','city':'0101'},
-  'Ucrania':{'code':'UKR','dept':'01','city':'0101'},
-  'Uganda':{'code':'UGA','dept':'01','city':'0101'},
-  'Uruguay':{'code':'URY','dept':'10','city':'1001'},
-  'Venezuela':{'code':'VEN','dept':'01','city':'0101'},
-  'Vietnam':{'code':'VNM','dept':'01','city':'0101'},
-  'Yemen':{'code':'YEM','dept':'01','city':'0101'},
-  'Zambia':{'code':'ZMB','dept':'01','city':'0101'},
-  'Zimbabue':{'code':'ZWE','dept':'01','city':'0101'},
-  'Andorra':{'code':'AND','dept':'06','city':'0601'},
-  'Islas Caimán':{'code':'CYM','dept':'01','city':'0101'},
-  'Bosnia y Herzegovina':{'code':'BIH','dept':'04','city':'0401'},
-  // Aliases
-  'United States':{'code':'USA','dept':'47','city':'98032'},
-  'United Kingdom':{'code':'GBR','dept':'01','city':'0101'},
-  'Germany':{'code':'DEU','dept':'01','city':'0101'},
-  'France':{'code':'FRA','dept':'06','city':'0601'},
-  'Spain':{'code':'ESP','dept':'09','city':'0101'},
-  'Italy':{'code':'ITA','dept':'02','city':'0201'},
-  'Canada':{'code':'CAN','dept':'01','city':'0101'},
-  'Australia':{'code':'AUS','dept':'01','city':'0101'},
-  'Mexico':{'code':'MEX','dept':'15','city':'1501'},
-  'Brazil':{'code':'BRA','dept':'04','city':'0401'},
-  'Argentina':{'code':'ARG','dept':'01','city':'0101'},
-  'Netherlands':{'code':'NLD','dept':'10','city':'1001'},
-  'Poland':{'code':'POL','dept':'10','city':'1001'},
+// Colombia → Bogotá D.C.: dept=11, city=11001
+// USA special case → dept=47, city=98032 (as in model)
+// ══════════════════════════════════════════════════════════════
+const COUNTRIES={
+  'Colombia':{c:'COL',d:'11',ci:'11001'},
+  'Ecuador':{c:'ECU',d:'01',ci:'01001'},
+  'Perú':{c:'PER',d:'05',ci:'05001'},
+  'Afganistán':{c:'AFG',d:'01',ci:'0101'},'Albania':{c:'ALB',d:'01',ci:'0101'},
+  'Alemania':{c:'DEU',d:'01',ci:'0101'},'Angola':{c:'AGO',d:'01',ci:'0101'},
+  'Arabia Saudita':{c:'SAU',d:'01',ci:'0101'},'Argelia':{c:'DZA',d:'01',ci:'0101'},
+  'Argentina':{c:'ARG',d:'01',ci:'0101'},'Armenia':{c:'ARM',d:'01',ci:'0101'},
+  'Aruba':{c:'ABW',d:'02',ci:'0201'},'Australia':{c:'AUS',d:'01',ci:'0101'},
+  'Austria':{c:'AUT',d:'01',ci:'0101'},'Azerbaiyán':{c:'AZE',d:'01',ci:'0101'},
+  'Bahamas':{c:'BHS',d:'01',ci:'0101'},'Bangladés':{c:'BGD',d:'01',ci:'0101'},
+  'Barbados':{c:'BRB',d:'01',ci:'0101'},'Baréin':{c:'BHR',d:'01',ci:'0101'},
+  'Bélgica':{c:'BEL',d:'01',ci:'0101'},'Belice':{c:'BLZ',d:'01',ci:'0101'},
+  'Benín':{c:'BEN',d:'01',ci:'0101'},'Bielorrusia':{c:'BLR',d:'01',ci:'0101'},
+  'Bolivia':{c:'BOL',d:'01',ci:'0101'},'Bosnia-Herzegovina':{c:'BIH',d:'04',ci:'0401'},
+  'Botsuana':{c:'BWA',d:'01',ci:'0101'},'Brasil':{c:'BRA',d:'04',ci:'0401'},
+  'Brunéi':{c:'BRN',d:'01',ci:'0101'},'Bulgaria':{c:'BGR',d:'01',ci:'0101'},
+  'Burkina Faso':{c:'BFA',d:'01',ci:'0101'},'Burundi':{c:'BDI',d:'01',ci:'0101'},
+  'Bután':{c:'BTN',d:'01',ci:'0101'},'Cabo Verde':{c:'CPV',d:'01',ci:'0101'},
+  'Camboya':{c:'KHM',d:'01',ci:'0101'},'Camerún':{c:'CMR',d:'01',ci:'0101'},
+  'Canadá':{c:'CAN',d:'01',ci:'0101'},'Chad':{c:'TCD',d:'01',ci:'0101'},
+  'Chile':{c:'CHL',d:'01',ci:'0101'},'China':{c:'CHN',d:'01',ci:'0101'},
+  'Chipre':{c:'CYP',d:'01',ci:'0101'},'Comoras':{c:'COM',d:'01',ci:'0101'},
+  'Congo':{c:'COG',d:'01',ci:'0101'},'Costa Rica':{c:'CRI',d:'01',ci:'0101'},
+  'Croacia':{c:'HRV',d:'01',ci:'0101'},'Cuba':{c:'CUB',d:'01',ci:'0101'},
+  'Curazao':{c:'CUW',d:'01',ci:'0101'},'Dinamarca':{c:'DNK',d:'01',ci:'0101'},
+  'Dominica':{c:'DMA',d:'01',ci:'0101'},'Egipto':{c:'EGY',d:'01',ci:'0101'},
+  'El Salvador':{c:'VCT',d:'01',ci:'0101'},'Emiratos Árabes Unidos':{c:'ARE',d:'01',ci:'0101'},
+  'Eritrea':{c:'ERI',d:'01',ci:'0101'},'Eslovaquia':{c:'SVN',d:'01',ci:'0101'},
+  'Eslovenia':{c:'SVK',d:'01',ci:'0101'},'España':{c:'ESP',d:'09',ci:'0101'},
+  'Estados Unidos':{c:'USA',d:'47',ci:'98032'},'Estonia':{c:'EST',d:'01',ci:'0101'},
+  'Etiopía':{c:'ETH',d:'01',ci:'0101'},'Filipinas':{c:'PHL',d:'01',ci:'0101'},
+  'Finlandia':{c:'FIN',d:'01',ci:'0101'},'Fiyi':{c:'FJI',d:'01',ci:'0101'},
+  'Francia':{c:'FRA',d:'06',ci:'0601'},'Gabón':{c:'GAB',d:'01',ci:'0101'},
+  'Gambia':{c:'GMB',d:'01',ci:'0101'},'Georgia':{c:'GEO',d:'01',ci:'0101'},
+  'Ghana':{c:'GHA',d:'01',ci:'0101'},'Grecia':{c:'GRC',d:'01',ci:'0101'},
+  'Groenlandia':{c:'GRL',d:'01',ci:'0101'},'Guatemala':{c:'GTM',d:'01',ci:'0101'},
+  'Guyana':{c:'GUY',d:'01',ci:'0101'},'Haití':{c:'HTI',d:'01',ci:'0101'},
+  'Honduras':{c:'HND',d:'01',ci:'0101'},'Hong Kong':{c:'HKG',d:'01',ci:'0101'},
+  'Hungría':{c:'HUN',d:'01',ci:'0101'},'India':{c:'IND',d:'01',ci:'0101'},
+  'Indonesia':{c:'IDN',d:'01',ci:'0101'},'Irak':{c:'IRQ',d:'01',ci:'0101'},
+  'Irán':{c:'IRN',d:'01',ci:'0101'},'Irlanda':{c:'IRL',d:'01',ci:'0101'},
+  'Islandia':{c:'ISL',d:'01',ci:'0101'},'Israel':{c:'ISR',d:'01',ci:'0101'},
+  'Italia':{c:'ITA',d:'02',ci:'0201'},'Jamaica':{c:'JAM',d:'01',ci:'0101'},
+  'Japón':{c:'JPN',d:'01',ci:'0101'},'Jordania':{c:'JOR',d:'01',ci:'0101'},
+  'Kazajistán':{c:'KAZ',d:'01',ci:'0101'},'Kenia':{c:'KEN',d:'01',ci:'0101'},
+  'Kirguistán':{c:'KGZ',d:'01',ci:'0101'},'Kuwait':{c:'KWT',d:'01',ci:'0101'},
+  'Laos':{c:'LAO',d:'01',ci:'0101'},'Lesoto':{c:'LSO',d:'01',ci:'0101'},
+  'Letonia':{c:'LVA',d:'01',ci:'0101'},'Líbano':{c:'LBN',d:'01',ci:'0101'},
+  'Liberia':{c:'LBR',d:'01',ci:'0101'},'Libia':{c:'LBY',d:'01',ci:'0101'},
+  'Liechtenstein':{c:'LIE',d:'01',ci:'0101'},'Lituania':{c:'LTU',d:'01',ci:'0101'},
+  'Luxemburgo':{c:'LUX',d:'01',ci:'0101'},'Madagascar':{c:'MDG',d:'01',ci:'0101'},
+  'Malasia':{c:'MYS',d:'01',ci:'0101'},'Maldivas':{c:'MDV',d:'01',ci:'0101'},
+  'Malí':{c:'MLI',d:'01',ci:'0101'},'Malta':{c:'MLT',d:'01',ci:'0101'},
+  'Marruecos':{c:'MAR',d:'01',ci:'0101'},'Mauricio':{c:'MUS',d:'01',ci:'0101'},
+  'Mauritania':{c:'MRT',d:'01',ci:'0101'},'México':{c:'MEX',d:'15',ci:'1501'},
+  'Moldavia':{c:'MDA',d:'01',ci:'0101'},'Mónaco':{c:'MCO',d:'01',ci:'0101'},
+  'Mongolia':{c:'MNG',d:'01',ci:'0101'},'Montenegro':{c:'MNE',d:'01',ci:'0101'},
+  'Mozambique':{c:'MOZ',d:'01',ci:'0101'},'Namibia':{c:'NAM',d:'01',ci:'0101'},
+  'Nepal':{c:'NPL',d:'01',ci:'0101'},'Nicaragua':{c:'NIC',d:'03',ci:'0301'},
+  'Níger':{c:'NER',d:'01',ci:'0101'},'Nigeria':{c:'NGA',d:'01',ci:'0101'},
+  'Noruega':{c:'NOR',d:'01',ci:'0101'},'Nueva Zelanda':{c:'NZL',d:'01',ci:'0101'},
+  'Omán':{c:'OMN',d:'01',ci:'0101'},'Países Bajos':{c:'NLD',d:'10',ci:'1001'},
+  'Pakistán':{c:'PAK',d:'01',ci:'0101'},'Palestina':{c:'PSE',d:'01',ci:'0101'},
+  'Panamá':{c:'PAN',d:'01',ci:'0101'},'Paraguay':{c:'PRY',d:'01',ci:'0101'},
+  'Polonia':{c:'POL',d:'10',ci:'1001'},'Portugal':{c:'PRT',d:'01',ci:'0101'},
+  'Puerto Rico':{c:'PRI',d:'01',ci:'0101'},'Qatar':{c:'QAT',d:'01',ci:'0101'},
+  'Reino Unido':{c:'GBR',d:'01',ci:'0101'},'República Checa':{c:'CZE',d:'01',ci:'0101'},
+  'República Dominicana':{c:'DOM',d:'01',ci:'0101'},'Ruanda':{c:'RWA',d:'01',ci:'0101'},
+  'Rumania':{c:'ROU',d:'08',ci:'0801'},'Rusia':{c:'RUS',d:'01',ci:'0101'},
+  'Senegal':{c:'SOM',d:'01',ci:'0101'},'Serbia':{c:'SRB',d:'01',ci:'0101'},
+  'Singapur':{c:'SGP',d:'01',ci:'0101'},'Somalia':{c:'SGS',d:'01',ci:'0101'},
+  'Sri Lanka':{c:'LKA',d:'01',ci:'0101'},'Sudáfrica':{c:'ZAF',d:'01',ci:'0101'},
+  'Sudán':{c:'SDN',d:'01',ci:'0101'},'Suecia':{c:'SEN',d:'01',ci:'0101'},
+  'Suiza':{c:'CHE',d:'01',ci:'0101'},'Surinam':{c:'SUR',d:'01',ci:'0101'},
+  'Tailandia':{c:'THA',d:'01',ci:'0101'},'Taiwán':{c:'TWN',d:'01',ci:'0101'},
+  'Tanzania':{c:'TZA',d:'01',ci:'0101'},'Turquía':{c:'TUR',d:'01',ci:'0101'},
+  'Ucrania':{c:'UKR',d:'01',ci:'0101'},'Uganda':{c:'UGA',d:'01',ci:'0101'},
+  'Uruguay':{c:'URY',d:'10',ci:'1001'},'Venezuela':{c:'VEN',d:'01',ci:'0101'},
+  'Vietnam':{c:'VNM',d:'01',ci:'0101'},'Yemen':{c:'YEM',d:'01',ci:'0101'},
+  'Zambia':{c:'ZMB',d:'01',ci:'0101'},'Zimbabue':{c:'ZWE',d:'01',ci:'0101'},
+  'Andorra':{c:'AND',d:'06',ci:'0601'},'Islas Caimán':{c:'CYM',d:'01',ci:'0101'},
+  // English aliases
+  'United States':{c:'USA',d:'47',ci:'98032'},'United Kingdom':{c:'GBR',d:'01',ci:'0101'},
+  'Germany':{c:'DEU',d:'01',ci:'0101'},'France':{c:'FRA',d:'06',ci:'0601'},
+  'Spain':{c:'ESP',d:'09',ci:'0101'},'Italy':{c:'ITA',d:'02',ci:'0201'},
+  'Canada':{c:'CAN',d:'01',ci:'0101'},'Mexico':{c:'MEX',d:'15',ci:'1501'},
+  'Brazil':{c:'BRA',d:'04',ci:'0401'},'Netherlands':{c:'NLD',d:'10',ci:'1001'},
+  'Poland':{c:'POL',d:'10',ci:'1001'},'Australia':{c:'AUS',d:'01',ci:'0101'},
+  'Argentina':{c:'ARG',d:'01',ci:'0101'},'Japan':{c:'JPN',d:'01',ci:'0101'},
+  'China':{c:'CHN',d:'01',ci:'0101'},'India':{c:'IND',d:'01',ci:'0101'},
+  'Russia':{c:'RUS',d:'01',ci:'0101'},'Turkey':{c:'TUR',d:'01',ci:'0101'},
+  'South Korea':{c:'KOR',d:'01',ci:'0101'},'Portugal':{c:'PRT',d:'01',ci:'0101'},
+  'Switzerland':{c:'CHE',d:'01',ci:'0101'},'Belgium':{c:'BEL',d:'01',ci:'0101'},
 };
 
-// ════════════════════════════════════════════════════════════════════════
-// PHONE PREFIX → COUNTRY (for new format detection)
-// Ordered longest-prefix first for matching
-// ════════════════════════════════════════════════════════════════════════
-const PHONE_PREFIXES = [
-  // 3-digit prefixes first
-  {p:'593',code:'ECU',dept:'01',city:'01001'},
-  {p:'598',code:'URY',dept:'10',city:'1001'},
-  {p:'595',code:'PRY',dept:'01',city:'0101'},
-  {p:'591',code:'BOL',dept:'01',city:'0101'},
-  {p:'506',code:'CRI',dept:'01',city:'0101'},
-  {p:'507',code:'PAN',dept:'01',city:'0101'},
-  {p:'505',code:'NIC',dept:'03',city:'0301'},
-  {p:'504',code:'HND',dept:'01',city:'0101'},
-  {p:'502',code:'GTM',dept:'01',city:'0101'},
-  {p:'503',code:'VCT',dept:'01',city:'0101'},
-  {p:'381',code:'SRB',dept:'01',city:'0101'},
-  {p:'380',code:'UKR',dept:'01',city:'0101'},
-  {p:'375',code:'BLR',dept:'01',city:'0101'},
-  {p:'372',code:'EST',dept:'01',city:'0101'},
-  {p:'371',code:'LVA',dept:'01',city:'0101'},
-  {p:'370',code:'LTU',dept:'01',city:'0101'},
-  {p:'358',code:'FIN',dept:'01',city:'0101'},
-  {p:'354',code:'ISL',dept:'01',city:'0101'},
-  {p:'351',code:'PRT',dept:'01',city:'0101'},
-  {p:'420',code:'CZE',dept:'01',city:'0101'},
-  {p:'421',code:'SVN',dept:'01',city:'0101'},
-  {p:'386',code:'SVK',dept:'01',city:'0101'},
-  {p:'385',code:'HRV',dept:'01',city:'0101'},
-  {p:'966',code:'SAU',dept:'01',city:'0101'},
-  {p:'972',code:'ISR',dept:'01',city:'0101'},
-  {p:'971',code:'ARE',dept:'01',city:'0101'},
-  {p:'234',code:'NGA',dept:'01',city:'0101'},
-  {p:'233',code:'GHA',dept:'01',city:'0101'},
-  {p:'254',code:'KEN',dept:'01',city:'0101'},
-  {p:'255',code:'TZA',dept:'01',city:'0101'},
-  {p:'256',code:'UGA',dept:'01',city:'0101'},
-  {p:'212',code:'MAR',dept:'01',city:'0101'},
-  {p:'216',code:'TUN',dept:'01',city:'0101'},
-  {p:'237',code:'CMR',dept:'01',city:'0101'},
-  {p:'509',code:'HTI',dept:'01',city:'0101'},
-  {p:'590',code:'GLP',dept:'01',city:'0101'},
-  {p:'596',code:'MTQ',dept:'01',city:'0101'},
-  {p:'675',code:'PNG',dept:'01',city:'0101'},
-  // 2-digit prefixes
-  {p:'57',code:'COL',dept:'11',city:'11001'},
-  {p:'55',code:'BRA',dept:'04',city:'0401'},
-  {p:'54',code:'ARG',dept:'01',city:'0101'},
-  {p:'56',code:'CHL',dept:'01',city:'0101'},
-  {p:'58',code:'VEN',dept:'01',city:'0101'},
-  {p:'51',code:'PER',dept:'05',city:'05001'},
-  {p:'52',code:'MEX',dept:'15',city:'1501'},
-  {p:'53',code:'CUB',dept:'01',city:'0101'},
-  {p:'44',code:'GBR',dept:'01',city:'0101'},
-  {p:'49',code:'DEU',dept:'01',city:'0101'},
-  {p:'33',code:'FRA',dept:'06',city:'0601'},
-  {p:'39',code:'ITA',dept:'02',city:'0201'},
-  {p:'34',code:'ESP',dept:'09',city:'0101'},
-  {p:'31',code:'NLD',dept:'10',city:'1001'},
-  {p:'32',code:'BEL',dept:'01',city:'0101'},
-  {p:'41',code:'CHE',dept:'01',city:'0101'},
-  {p:'43',code:'AUT',dept:'01',city:'0101'},
-  {p:'45',code:'DNK',dept:'01',city:'0101'},
-  {p:'46',code:'SEN',dept:'01',city:'0101'},
-  {p:'47',code:'NOR',dept:'01',city:'0101'},
-  {p:'48',code:'POL',dept:'10',city:'1001'},
-  {p:'36',code:'HUN',dept:'01',city:'0101'},
-  {p:'40',code:'ROU',dept:'08',city:'0801'},
-  {p:'30',code:'GRC',dept:'01',city:'0101'},
-  {p:'27',code:'ZAF',dept:'01',city:'0101'},
-  {p:'20',code:'EGY',dept:'01',city:'0101'},
-  {p:'61',code:'AUS',dept:'01',city:'0101'},
-  {p:'64',code:'NZL',dept:'01',city:'0101'},
-  {p:'81',code:'JPN',dept:'01',city:'0101'},
-  {p:'82',code:'KOR',dept:'01',city:'0101'},
-  {p:'86',code:'CHN',dept:'01',city:'0101'},
-  {p:'91',code:'IND',dept:'01',city:'0101'},
-  {p:'92',code:'PAK',dept:'01',city:'0101'},
-  {p:'90',code:'TUR',dept:'01',city:'0101'},
-  {p:'66',code:'THA',dept:'01',city:'0101'},
-  {p:'62',code:'IDN',dept:'01',city:'0101'},
-  {p:'63',code:'PHL',dept:'01',city:'0101'},
-  {p:'65',code:'SGP',dept:'01',city:'0101'},
-  {p:'60',code:'MYS',dept:'01',city:'0101'},
-  {p:'84',code:'VNM',dept:'01',city:'0101'},
-  {p:'98',code:'IRN',dept:'01',city:'0101'},
-  {p:'94',code:'LKA',dept:'01',city:'0101'},
+// Phone prefix → country (ordered longest first)
+const PHONE_PREFIXES=[
+  {p:'593',c:'ECU',d:'01',ci:'01001'},{p:'598',c:'URY',d:'10',ci:'1001'},
+  {p:'595',c:'PRY',d:'01',ci:'0101'},{p:'591',c:'BOL',d:'01',ci:'0101'},
+  {p:'506',c:'CRI',d:'01',ci:'0101'},{p:'507',c:'PAN',d:'01',ci:'0101'},
+  {p:'505',c:'NIC',d:'03',ci:'0301'},{p:'504',c:'HND',d:'01',ci:'0101'},
+  {p:'502',c:'GTM',d:'01',ci:'0101'},{p:'503',c:'VCT',d:'01',ci:'0101'},
+  {p:'381',c:'SRB',d:'01',ci:'0101'},{p:'380',c:'UKR',d:'01',ci:'0101'},
+  {p:'375',c:'BLR',d:'01',ci:'0101'},{p:'372',c:'EST',d:'01',ci:'0101'},
+  {p:'371',c:'LVA',d:'01',ci:'0101'},{p:'370',c:'LTU',d:'01',ci:'0101'},
+  {p:'358',c:'FIN',d:'01',ci:'0101'},{p:'354',c:'ISL',d:'01',ci:'0101'},
+  {p:'351',c:'PRT',d:'01',ci:'0101'},{p:'420',c:'CZE',d:'01',ci:'0101'},
+  {p:'386',c:'SVN',d:'01',ci:'0101'},{p:'385',c:'HRV',d:'01',ci:'0101'},
+  {p:'966',c:'SAU',d:'01',ci:'0101'},{p:'972',c:'ISR',d:'01',ci:'0101'},
+  {p:'971',c:'ARE',d:'01',ci:'0101'},{p:'234',c:'NGA',d:'01',ci:'0101'},
+  {p:'233',c:'GHA',d:'01',ci:'0101'},{p:'254',c:'KEN',d:'01',ci:'0101'},
+  {p:'255',c:'TZA',d:'01',ci:'0101'},{p:'256',c:'UGA',d:'01',ci:'0101'},
+  {p:'212',c:'MAR',d:'01',ci:'0101'},{p:'216',c:'TUN',d:'01',ci:'0101'},
+  {p:'509',c:'HTI',d:'01',ci:'0101'},{p:'599',c:'CUW',d:'01',ci:'0101'},
+  {p:'675',c:'PNG',d:'01',ci:'0101'},
+  // 2-digit
+  {p:'57',c:'COL',d:'11',ci:'11001'},{p:'55',c:'BRA',d:'04',ci:'0401'},
+  {p:'54',c:'ARG',d:'01',ci:'0101'},{p:'56',c:'CHL',d:'01',ci:'0101'},
+  {p:'58',c:'VEN',d:'01',ci:'0101'},{p:'51',c:'PER',d:'05',ci:'05001'},
+  {p:'52',c:'MEX',d:'15',ci:'1501'},{p:'53',c:'CUB',d:'01',ci:'0101'},
+  {p:'44',c:'GBR',d:'01',ci:'0101'},{p:'49',c:'DEU',d:'01',ci:'0101'},
+  {p:'33',c:'FRA',d:'06',ci:'0601'},{p:'39',c:'ITA',d:'02',ci:'0201'},
+  {p:'34',c:'ESP',d:'09',ci:'0101'},{p:'31',c:'NLD',d:'10',ci:'1001'},
+  {p:'32',c:'BEL',d:'01',ci:'0101'},{p:'41',c:'CHE',d:'01',ci:'0101'},
+  {p:'43',c:'AUT',d:'01',ci:'0101'},{p:'45',c:'DNK',d:'01',ci:'0101'},
+  {p:'46',c:'SEN',d:'01',ci:'0101'},{p:'47',c:'NOR',d:'01',ci:'0101'},
+  {p:'48',c:'POL',d:'10',ci:'1001'},{p:'36',c:'HUN',d:'01',ci:'0101'},
+  {p:'40',c:'ROU',d:'08',ci:'0801'},{p:'30',c:'GRC',d:'01',ci:'0101'},
+  {p:'27',c:'ZAF',d:'01',ci:'0101'},{p:'20',c:'EGY',d:'01',ci:'0101'},
+  {p:'61',c:'AUS',d:'01',ci:'0101'},{p:'64',c:'NZL',d:'01',ci:'0101'},
+  {p:'81',c:'JPN',d:'01',ci:'0101'},{p:'82',c:'KOR',d:'01',ci:'0101'},
+  {p:'86',c:'CHN',d:'01',ci:'0101'},{p:'91',c:'IND',d:'01',ci:'0101'},
+  {p:'92',c:'PAK',d:'01',ci:'0101'},{p:'90',c:'TUR',d:'01',ci:'0101'},
+  {p:'66',c:'THA',d:'01',ci:'0101'},{p:'62',c:'IDN',d:'01',ci:'0101'},
+  {p:'63',c:'PHL',d:'01',ci:'0101'},{p:'65',c:'SGP',d:'01',ci:'0101'},
+  {p:'60',c:'MYS',d:'01',ci:'0101'},{p:'84',c:'VNM',d:'01',ci:'0101'},
+  {p:'98',c:'IRN',d:'01',ci:'0101'},{p:'94',c:'LKA',d:'01',ci:'0101'},
   // 1-digit
-  {p:'7', code:'RUS',dept:'01',city:'0101'},
-  {p:'1', code:'USA',dept:'47',city:'98032'},
+  {p:'7',c:'RUS',d:'01',ci:'0101'},{p:'1',c:'USA',d:'47',ci:'98032'},
 ];
 
-// ════════════════════════════════════════════════════════════════════════
-// GLOBAL STATE
-// ════════════════════════════════════════════════════════════════════════
-let selectedFile = null;
-let processedRows = [];
-let lastBlob = null;
+// ══════════════════════════════════════════════════════════════
+// PHONE CLEANING — MAX 10 DIGITS (SIIGO requirement)
+// ══════════════════════════════════════════════════════════════
+function cleanPhone(raw, countryCode){
+  const digits=(raw||'').toString().replace(/\D/g,'');
+  if(!digits) return null;
+  let clean=digits;
+  // Strip country prefix for Colombia
+  if(countryCode==='COL'){
+    if(clean.startsWith('57')&&clean.length>10) clean=clean.slice(2);
+  } else if(countryCode==='USA'||countryCode==='CAN'){
+    if(clean.startsWith('1')&&clean.length===11) clean=clean.slice(1);
+  } else {
+    // Generic: strip country code if number is too long
+    if(clean.length>10){
+      for(const entry of PHONE_PREFIXES){
+        if(clean.startsWith(entry.p)&&clean.length-entry.p.length<=10&&clean.length-entry.p.length>=7){
+          clean=clean.slice(entry.p.length);
+          break;
+        }
+      }
+    }
+    // If still > 10, just take last 10 digits (most likely local number)
+    if(clean.length>10) clean=clean.slice(-10);
+  }
+  // HARD LIMIT: max 10 digits always
+  return clean.slice(0,10)||null;
+}
 
-// ════════════════════════════════════════════════════════════════════════
-// UI HELPERS
-// ════════════════════════════════════════════════════════════════════════
-const $ = id => document.getElementById(id);
-function setStep(n){
-  for(let i=1;i<=3;i++){
-    const el = $(`s${i}`);
-    el.className='step-btn'+(i<n?' done':i===n?' active':'');
+// ══════════════════════════════════════════════════════════════
+// COUNTRY LOOKUP
+// ══════════════════════════════════════════════════════════════
+function lookupCountry(name){
+  if(!name) return null;
+  const n=name.trim();
+  if(COUNTRIES[n]) return COUNTRIES[n];
+  const nl=n.toLowerCase();
+  for(const[k,v] of Object.entries(COUNTRIES)){
+    if(k.toLowerCase()===nl) return v;
+  }
+  return null;
+}
+function countryFromPhone(raw){
+  const digits=(raw||'').toString().replace(/\D/g,'');
+  for(const e of PHONE_PREFIXES){
+    if(digits.startsWith(e.p)) return {c:e.c,d:e.d,ci:e.ci};
+  }
+  // 10-digit number starting with 3 → likely Colombian mobile (no prefix)
+  if(/^3\d{9}$/.test(digits)) return {c:'COL',d:'11',ci:'11001'};
+  return null;
+}
+
+// ══════════════════════════════════════════════════════════════
+// NAME SPLITTING
+// Colombia: last 2 words = apellidos, rest = nombres
+// Foreign 3 words: first 2 = nombres, last = apellido
+// Foreign 4+ words: first 2 = nombres, rest = apellidos
+// ══════════════════════════════════════════════════════════════
+function splitName(full, isColombia){
+  const parts=full.trim().replace(/\s+/g,' ').split(' ').filter(Boolean);
+  if(!parts.length) return ['',''];
+  if(parts.length===1) return [parts[0],''];
+  if(parts.length===2) return [parts[0],parts[1]];
+  if(isColombia){
+    return[parts.slice(0,-2).join(' ')||parts[0], parts.slice(-2).join(' ')];
+  } else {
+    return[parts.slice(0,2).join(' '), parts.slice(2).join(' ')];
   }
 }
-function showAlert(msg,type='err'){
-  const icons={ok:'✅',warn:'⚠️',err:'❌'};
-  $('alertBox').innerHTML=`<div class="alert alert-${type}"><span class="alert-icon">${icons[type]}</span><span>${msg}</span></div>`;
+
+// ══════════════════════════════════════════════════════════════
+// FORMAT DETECTION
+// ══════════════════════════════════════════════════════════════
+function detectFormat(headers){
+  const hl=headers.map(h=>String(h||'').toLowerCase().trim());
+  // Old full Spanish format: has 'número de identificación'
+  if(hl.some(h=>h.includes('número de identificación')||h.includes('numero de identificacion')||h==='número de identificación')) return 'old';
+  if(hl.includes('nombre')&&(hl.includes('tipo de documento')||hl.includes('país emisor del documento'))) return 'old';
+  // New English simplified
+  if(hl.includes('name')&&hl.some(h=>h.includes('phone'))) return 'new';
+  if(hl.includes('nombre')) return 'old';
+  return 'new';
 }
+
+// ══════════════════════════════════════════════════════════════
+// PROCESS OLD FORMAT (full Spanish CloudBeds export)
+// ══════════════════════════════════════════════════════════════
+function processOldFormat(data){
+  function fc(rows,...keys){
+    for(const row of rows.slice(0,10)){
+      for(const k of Object.keys(row)){
+        const kl=k.toLowerCase().trim();
+        for(const key of keys){
+          if(kl===key.toLowerCase()||kl.includes(key.toLowerCase().substring(0,15))) return k;
+        }
+      }
+    }
+    return null;
+  }
+  const cId    =fc(data,'número de identificación','numero de identificacion');
+  const cDocT  =fc(data,'tipo de documento');
+  const cCountry=fc(data,'país emisor del documento','pais emisor');
+  const cName  =fc(data,'nombre');
+  const cEmail =fc(data,'correo electrónico','correo electronico','email');
+  const cPhone =fc(data,'teléfono','telefono');
+  const cMobile=fc(data,'móvil','movil');
+  const cAddr  =fc(data,'dirección','direccion');
+
+  const seen=new Set();
+  const rows=[];
+  const warnings=[];
+
+  for(const row of data){
+    const id=String(row[cId]||'').trim();
+    if(!id||id==='-'||id==='nan') continue;
+    if(seen.has(id)) continue;
+    seen.add(id);
+
+    const docType=String(row[cDocT]||'').trim();
+    const countryName=String(row[cCountry]||'').trim();
+    const name=String(row[cName]||'').trim().toUpperCase();
+    const email=String(row[cEmail]||'').trim().toLowerCase();
+    const phoneRaw=String(row[cPhone]||row[cMobile]||'').trim();
+    const addr=String(row[cAddr]||'').trim();
+
+    if(!name) continue;
+
+    let codes=lookupCountry(countryName);
+    if(!codes){
+      codes=countryFromPhone(phoneRaw)||{c:'',d:'01',ci:'0101'};
+      if(countryName&&!codes.c) warnings.push(`Unknown country: "${countryName}" (ID: ${id})`);
+    }
+    const isCol=codes.c==='COL';
+    const tipoId=(isCol&&(docType==='DNI'||docType==='Cédula de ciudadanía'||docType==='CC'))?13:41;
+    const phone=cleanPhone(phoneRaw,codes.c);
+    const[nombres,apellidos]=splitName(name,isCol);
+
+    rows.push(buildRow(id,tipoId,nombres,apellidos,name,addr,codes.c,codes.d,codes.ci,phone,email||null));
+  }
+  return{rows,warnings};
+}
+
+// ══════════════════════════════════════════════════════════════
+// PROCESS NEW FORMAT (simplified English export)
+// ══════════════════════════════════════════════════════════════
+function processNewFormat(data){
+  function fc(rows,...keys){
+    for(const row of rows.slice(0,10)){
+      for(const k of Object.keys(row)){
+        const kl=k.toLowerCase().trim();
+        for(const key of keys){
+          if(kl===key.toLowerCase()||kl.includes(key.toLowerCase())) return k;
+        }
+      }
+    }
+    return null;
+  }
+  const cName  =fc(data,'name');
+  const cEmail =fc(data,'email');
+  const cPhone =fc(data,'phone number','phone','telefono','teléfono');
+  const cRes   =fc(data,'reservation number','reservation','número de la reserva');
+
+  const seen=new Set();
+  const rows=[];
+  const warnings=[];
+
+  for(const row of data){
+    const name=String(row[cName]||'').trim().toUpperCase();
+    const email=String(row[cEmail]||'').trim().toLowerCase();
+    const phoneRaw=String(row[cPhone]||'').trim();
+    const resNum=String(row[cRes]||'').trim();
+
+    if(!name) continue;
+    const deduKey=email||name;
+    if(seen.has(deduKey)) continue;
+    seen.add(deduKey);
+
+    const codes=countryFromPhone(phoneRaw)||{c:'',d:'01',ci:'0101'};
+    const isCol=codes.c==='COL';
+    const tipoId=isCol?13:41;
+    const phone=cleanPhone(phoneRaw,codes.c);
+    const id=resNum||email||name;
+    const[nombres,apellidos]=splitName(name,isCol);
+
+    rows.push(buildRow(id,tipoId,nombres,apellidos,name,'',codes.c,codes.d,codes.ci,phone,email||null));
+  }
+  return{rows,warnings};
+}
+
+// ══════════════════════════════════════════════════════════════
+// BUILD ROW (31 columns)
+// ══════════════════════════════════════════════════════════════
+function buildRow(id,tipoId,nombres,apellidos,comercial,dir,pais,dept,city,tel,email){
+  return[
+    id||null,     // 1  Identificación
+    null,          // 2  Dígito verificación
+    null,          // 3  Código Sucursal
+    tipoId,        // 4  Tipo identificación (13 Colombia DNI / 41 Foreign)
+    'Es persona',  // 5  Tipo
+    null,          // 6  Razón social
+    nombres||null, // 7  Nombres del tercero
+    apellidos||null,// 8 Apellidos del tercero
+    comercial||null,// 9 Nombre Comercial
+    dir||null,     // 10 Dirección
+    pais||null,    // 11 Código país
+    dept||null,    // 12 Código departamento
+    city||null,    // 13 Código ciudad
+    null,          // 14 Indicativo teléfono
+    tel||null,     // 15 Teléfono principal (max 10 digits)
+    null,          // 16 Extensión
+    0,             // 17 Tipo régimen IVA (integer 0)
+    null,          // 18 Responsabilidad fiscal
+    null,          // 19 Código Postal
+    null,          // 20 Nombres contacto
+    null,          // 21 Apellidos contacto
+    null,          // 22 Indicativo contacto
+    null,          // 23 Teléfono contacto
+    null,          // 24 Extensión contacto
+    email||null,   // 25 Correo electrónico
+    null,          // 26 Cobrador
+    null,          // 27 Vendedor
+    null,          // 28 Otros
+    null,          // 29 Clientes
+    null,          // 30 Proveedor
+    null,          // 31 Estado
+  ];
+}
+
+// ══════════════════════════════════════════════════════════════
+// GENERATE EXCEL — 100% EXACT SIIGO FORMAT
+// Header: Calibri 12pt Bold
+//   Required cols (0,3,4,5,6,7): fill FFFFFFFF (white)
+//   Optional cols (rest):        fill FF00AAFF (blue)
+// Data: Aptos Narrow 11pt (exact font from MODELO file)
+// ══════════════════════════════════════════════════════════════
+async function generateExcel(dataRows){
+  const wb=new ExcelJS.Workbook();
+  wb.creator='CloudBeds SIIGO Converter v4';
+  wb.created=new Date();
+  const ws=wb.addWorksheet('Hoja1');
+
+  // Header row
+  const headerRow=ws.addRow(SIIGO_COLS.map(c=>c.h));
+  headerRow.height=32.25;
+  SIIGO_COLS.forEach((col,i)=>{
+    const cell=headerRow.getCell(i+1);
+    // EXACT COLORS: required=white, optional=blue
+    cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:col.req?'FFFFFFFF':'FF00AAFF'}};
+    cell.font={name:'Calibri',size:12,bold:true,color:{argb:'FF000000'}};
+    cell.alignment={horizontal:'center',vertical:'middle',wrapText:true};
+    cell.border={bottom:{style:'thin',color:{argb:'FFAAAAAA'}}};
+  });
+
+  // Data rows
+  dataRows.forEach(rowData=>{
+    const row=ws.addRow(rowData);
+    row.height=15;
+    row.eachCell({includeEmpty:false},cell=>{
+      cell.font={name:'Aptos Narrow',size:11};
+    });
+  });
+
+  // Column widths
+  SIIGO_COLS.forEach((col,i)=>{ws.getColumn(i+1).width=col.w});
+
+  // Freeze header row
+  ws.views=[{state:'frozen',xSplit:0,ySplit:1,activeCell:'A2'}];
+
+  const buf=await wb.xlsx.writeBuffer();
+  return new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+}
+
+// ══════════════════════════════════════════════════════════════
+// STATE & UI
+// ══════════════════════════════════════════════════════════════
+let selectedFile=null,lastBlob=null;
+const $=id=>document.getElementById(id);
+function setStep(n){for(let i=1;i<=3;i++)$(`s${i}`).className='step-btn'+(i<n?' done':i===n?' active':'');}
+function showAlert(msg,type='err'){const ic={ok:'✅',warn:'⚠️',err:'❌'};$('alertBox').innerHTML=`<div class="alert alert-${type}"><span class="alert-icon">${ic[type]}</span><span>${msg}</span></div>`;}
 function clearAlert(){$('alertBox').innerHTML=''}
-function setProgress(pct,label=''){
-  $('progressWrap').classList.add('show');
-  $('progressBar').style.width=pct+'%';
-  $('progressLabel').textContent=label;
-}
+function setProgress(pct,lbl){$('progressWrap').classList.add('show');$('progressBar').style.width=pct+'%';$('progressLabel').textContent=lbl;}
 function hideProgress(){$('progressWrap').classList.remove('show')}
-function fmtBytes(b){
-  if(b<1024)return b+' B';
-  if(b<1048576)return (b/1024).toFixed(1)+' KB';
-  return (b/1048576).toFixed(1)+' MB';
-}
+function fmtBytes(b){return b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(1)+' MB'}
 
-// ════════════════════════════════════════════════════════════════════════
-// FILE HANDLING
-// ════════════════════════════════════════════════════════════════════════
-const dropzone = $('dropzone');
-const fileInput = $('fileInput');
-
+// File drop/select
+const dropzone=$('dropzone'),fileInput=$('fileInput');
 dropzone.addEventListener('dragover',e=>{e.preventDefault();dropzone.classList.add('dragover')});
 dropzone.addEventListener('dragleave',()=>dropzone.classList.remove('dragover'));
-dropzone.addEventListener('drop',e=>{
-  e.preventDefault();dropzone.classList.remove('dragover');
-  const f=e.dataTransfer.files[0];
-  if(f) setFile(f);
-});
+dropzone.addEventListener('drop',e=>{e.preventDefault();dropzone.classList.remove('dragover');const f=e.dataTransfer.files[0];if(f)setFile(f)});
 fileInput.addEventListener('change',()=>{if(fileInput.files[0])setFile(fileInput.files[0])});
 
 function setFile(f){
   const ext=f.name.split('.').pop().toLowerCase();
-  if(!['xlsx','xls','csv'].includes(ext)){
-    showAlert('Please upload an Excel or CSV file (.xlsx, .xls, .csv)');
-    return;
-  }
+  if(!['xlsx','xls','csv'].includes(ext)){showAlert('Please upload .xlsx, .xls, or .csv');return}
   selectedFile=f;
   dropzone.classList.add('has-file');
   $('fileBadge').classList.add('show');
   $('fileName').textContent=f.name;
   $('fileSize').textContent=fmtBytes(f.size);
-  $('previewBtn').disabled=false;
-  $('convertBtn').disabled=false;
-  clearAlert();
-  $('resultSection').style.display='none';
+  $('previewBtn').disabled=false;$('convertBtn').disabled=false;
+  clearAlert();$('resultSection').style.display='none';
   $('formatBadge').className='format-detected';
-  setStep(1);
-  // Auto-detect format by peeking
-  peekFormat(f);
+  setStep(1);peekFormat(f);
 }
-
 function clearFile(){
   selectedFile=null;fileInput.value='';
-  dropzone.classList.remove('has-file');
-  $('fileBadge').classList.remove('show');
-  $('previewBtn').disabled=true;
-  $('convertBtn').disabled=true;
-  $('resultSection').style.display='none';
-  $('formatBadge').className='format-detected';
+  dropzone.classList.remove('has-file');$('fileBadge').classList.remove('show');
+  $('previewBtn').disabled=true;$('convertBtn').disabled=true;
+  $('resultSection').style.display='none';$('formatBadge').className='format-detected';
   clearAlert();hideProgress();setStep(1);
 }
 
@@ -885,376 +827,75 @@ async function peekFormat(f){
     const data=await f.arrayBuffer();
     const wb=XLSX.read(data,{type:'array'});
     const ws=wb.Sheets[wb.SheetNames[0]];
-    const rows=XLSX.utils.sheet_to_json(ws,{header:1,raw:false});
-    const headers=(rows[0]||[]).map(h=>String(h||'').trim().toLowerCase());
+    const json=XLSX.utils.sheet_to_json(ws,{header:1,raw:false});
+    const headers=(json[0]||[]);
     const fmt=detectFormat(headers);
     const badge=$('formatBadge');
     if(fmt==='old'){
-      badge.className='format-detected show old-format';
-      $('formatIcon').textContent='🇨🇴';
-      $('formatText').textContent='Detected: Full CloudBeds format (with guest ID & country)';
-    }else{
-      badge.className='format-detected show new-format';
-      $('formatIcon').textContent='📋';
-      $('formatText').textContent='Detected: Summary CloudBeds format (country auto-detected from phone)';
+      badge.className='format-detected show format-old';
+      $('formatIcon').textContent='🇨🇴';$('formatText').textContent='Detected: Full CloudBeds format (Spanish, with guest ID & country)';
+    } else {
+      badge.className='format-detected show format-new';
+      $('formatIcon').textContent='📋';$('formatText').textContent='Detected: Summary format (country auto-detected from phone prefix)';
     }
   }catch(e){}
 }
 
-// ════════════════════════════════════════════════════════════════════════
-// FORMAT DETECTION
-// ════════════════════════════════════════════════════════════════════════
-function detectFormat(headers){
-  // Old Spanish full format: has identification number column
-  const oldKeys=['número de identificación','tipo de documento','país emisor del documento',
-    'numero de identificación','correo electrónico'];
-  if(oldKeys.some(k=>headers.some(h=>h.includes(k.substring(0,12))))) return 'old';
-  // New English simplified format
-  const newKeys=['name','phone number','reservation number'];
-  if(newKeys.filter(k=>headers.includes(k)).length>=2) return 'new';
-  // Fallback: try old if has 'nombre' (Spanish)
-  if(headers.some(h=>h==='nombre')) return 'old';
-  return 'new';
-}
-
-// ════════════════════════════════════════════════════════════════════════
-// DATA EXTRACTION
-// ════════════════════════════════════════════════════════════════════════
-function readFile(f){
+async function readFile(f){
   return new Promise((res,rej)=>{
-    const reader=new FileReader();
-    reader.onload=e=>{
+    const r=new FileReader();
+    r.onload=e=>{
       try{
-        const data=e.target.result;
-        const wb=XLSX.read(data,{type:'array',cellDates:true,raw:false});
+        const wb=XLSX.read(e.target.result,{type:'array',raw:false});
         const ws=wb.Sheets[wb.SheetNames[0]];
-        const json=XLSX.utils.sheet_to_json(ws,{raw:false,defval:''});
-        res(json);
+        res(XLSX.utils.sheet_to_json(ws,{raw:false,defval:''}));
       }catch(err){rej(err)}
     };
-    reader.onerror=()=>rej(new Error('Failed to read file'));
-    reader.readAsArrayBuffer(f);
+    r.onerror=()=>rej(new Error('File read error'));
+    r.readAsArrayBuffer(f);
   });
 }
 
-// ════════════════════════════════════════════════════════════════════════
-// COUNTRY & PHONE UTILITIES
-// ════════════════════════════════════════════════════════════════════════
-function lookupCountry(name){
-  if(!name) return null;
-  const n=name.trim();
-  if(COUNTRY_BY_NAME[n]) return COUNTRY_BY_NAME[n];
-  // Case-insensitive fallback
-  const nl=n.toLowerCase();
-  for(const [k,v] of Object.entries(COUNTRY_BY_NAME)){
-    if(k.toLowerCase()===nl) return v;
-  }
-  return null;
-}
-
-function detectCountryFromPhone(rawPhone){
-  const digits=String(rawPhone||'').replace(/\D/g,'');
-  for(const entry of PHONE_PREFIXES){
-    if(digits.startsWith(entry.p)){
-      return {code:entry.code,dept:entry.dept,city:entry.city};
-    }
-  }
-  // Heuristic: 10-digit number starting with 3 → Colombian mobile (no country code prefix)
-  if(/^3\d{9}$/.test(digits)){
-    return {code:'COL',dept:'11',city:'11001'};
-  }
-  return null;
-}
-
-function cleanPhone(rawPhone, countryCode){
-  let digits=String(rawPhone||'').replace(/[\s\+\(\)\-\.]/g,'');
-  if(countryCode==='COL'){
-    if(digits.startsWith('57')&&digits.length>10) digits=digits.slice(2);
-  } else if(countryCode==='USA'||countryCode==='CAN'){
-    if(digits.startsWith('1')&&digits.length===11) digits=digits.slice(1);
-  }
-  return digits||null;
-}
-
-// ════════════════════════════════════════════════════════════════════════
-// NAME SPLITTING
-// Colombia → last 2 words = apellidos, rest = nombres
-// Foreign  → last 1 word  = apellido,  rest = nombres (3 words)
-//          → first 2 = nombres, rest = apellidos (4+ words)
-// ════════════════════════════════════════════════════════════════════════
-function splitName(fullName, isColombia){
-  const parts=fullName.trim().replace(/\s+/g,' ').split(' ').filter(Boolean);
-  if(parts.length===0) return ['',''];
-  if(parts.length===1) return [parts[0],''];
-  if(parts.length===2) return [parts[0], parts[1]];
-  if(isColombia){
-    // Last 2 = apellidos, rest = nombres
-    const apellidos=parts.slice(-2).join(' ');
-    const nombres=parts.slice(0,-2).join(' ')||parts[0];
-    return [nombres, apellidos];
-  } else {
-    if(parts.length===3){
-      // 2 first names + 1 surname
-      return [parts[0]+' '+parts[1], parts[2]];
-    } else {
-      // 2 first names + remaining as surnames
-      return [parts[0]+' '+parts[1], parts.slice(2).join(' ')];
-    }
-  }
-}
-
-// ════════════════════════════════════════════════════════════════════════
-// PROCESS OLD FORMAT (full CloudBeds Spanish export)
-// ════════════════════════════════════════════════════════════════════════
-function processOldFormat(rawData){
-  // Find column names (flexible - look for partial matches)
-  function findCol(rows, ...keys){
-    for(const row of rows){
-      for(const k of Object.keys(row)){
-        const kl=k.toLowerCase().trim();
-        if(keys.some(key=>kl.includes(key.toLowerCase()))) return k;
-      }
-    }
-    return null;
-  }
-  const sample=rawData.slice(0,5);
-  const colId       = findCol(sample,'número de identificación','numero de identificacion');
-  const colDocType  = findCol(sample,'tipo de documento');
-  const colCountry  = findCol(sample,'país emisor','pais emisor');
-  const colName     = findCol(sample,'nombre');
-  const colEmail    = findCol(sample,'correo electrónico','correo electronico','email','correo');
-  const colPhone    = findCol(sample,'teléfono','telefono');
-  const colMobile   = findCol(sample,'móvil','movil','mobile');
-  const colAddress  = findCol(sample,'dirección','direccion');
-
-  const seen=new Set();
-  const results=[];
-
-  for(const row of rawData){
-    const id=String(row[colId]||'').trim();
-    if(!id||id==='-'||seen.has(id)) continue;
-    seen.add(id);
-
-    const docType=String(row[colDocType]||'').trim();
-    const countryName=String(row[colCountry]||'').trim();
-    const name=String(row[colName]||'').trim().toUpperCase();
-    const email=String(row[colEmail]||'').trim();
-    const phoneRaw=String(row[colPhone]||row[colMobile]||'').trim();
-    const address=String(row[colAddress]||'').trim();
-
-    if(!name) continue;
-
-    const codes=lookupCountry(countryName)||{code:'',dept:'01',city:'0101'};
-    const isCol=codes.code==='COL';
-    const tipoId=(isCol&&(docType==='DNI'||docType==='Cédula de ciudadanía'))?13:41;
-    const phone=cleanPhone(phoneRaw, codes.code);
-    const [nombres,apellidos]=splitName(name,isCol);
-
-    results.push(buildRow(id, tipoId, nombres, apellidos, name, address, codes.code, codes.dept, codes.city, phone, email));
-  }
-  return results;
-}
-
-// ════════════════════════════════════════════════════════════════════════
-// PROCESS NEW FORMAT (simplified CloudBeds English export)
-// ════════════════════════════════════════════════════════════════════════
-function processNewFormat(rawData){
-  function findCol(rows, ...keys){
-    for(const row of rows){
-      for(const k of Object.keys(row)){
-        const kl=k.toLowerCase().trim();
-        if(keys.some(key=>kl===key.toLowerCase()||kl.includes(key.toLowerCase()))) return k;
-      }
-    }
-    return null;
-  }
-  const sample=rawData.slice(0,5);
-  const colName     = findCol(sample,'name');
-  const colEmail    = findCol(sample,'email');
-  const colPhone    = findCol(sample,'phone number','phone','telefono','teléfono');
-  const colResNum   = findCol(sample,'reservation number','reservation','numero de la reserva','número de la reserva');
-
-  const seenEmail=new Set();
-  const seenName=new Set();
-  const results=[];
-
-  for(const row of rawData){
-    const name=String(row[colName]||'').trim().toUpperCase();
-    const email=String(row[colEmail]||'').trim().toLowerCase();
-    const phoneRaw=String(row[colPhone]||'').trim();
-    const resNum=String(row[colResNum]||'').trim();
-
-    if(!name) continue;
-
-    // Dedup: prefer by email, fallback by name
-    const deduKey=email||name;
-    if(seenEmail.has(deduKey)) continue;
-    seenEmail.add(deduKey);
-
-    const id=resNum||email||name;
-    const codes=detectCountryFromPhone(phoneRaw)||{code:'',dept:'01',city:'0101'};
-    const isCol=codes.code==='COL';
-    const tipoId=isCol?13:41;
-    const phone=cleanPhone(phoneRaw, codes.code);
-    const [nombres,apellidos]=splitName(name,isCol);
-
-    results.push(buildRow(id, tipoId, nombres, apellidos, name, '', codes.code, codes.dept, codes.city, phone, email||null));
-  }
-  return results;
-}
-
-// ════════════════════════════════════════════════════════════════════════
-// BUILD OUTPUT ROW (31 columns matching SIIGO spec)
-// ════════════════════════════════════════════════════════════════════════
-function buildRow(id, tipoId, nombres, apellidos, nombreComercial, direccion, codPais, codDept, codCiudad, telefono, email){
-  return [
-    id||null,                    // 1  Identificación
-    null,                        // 2  Dígito verificación
-    null,                        // 3  Código Sucursal
-    tipoId,                      // 4  Tipo identificación (13 or 41)
-    'Es persona',                // 5  Tipo
-    null,                        // 6  Razón social
-    nombres||null,               // 7  Nombres del tercero
-    apellidos||null,             // 8  Apellidos del tercero
-    nombreComercial||null,       // 9  Nombre Comercial
-    direccion||null,             // 10 Dirección
-    codPais||null,               // 11 Código país
-    codDept||null,               // 12 Código departamento
-    codCiudad||null,             // 13 Código ciudad
-    null,                        // 14 Indicativo teléfono
-    telefono||null,              // 15 Teléfono principal
-    null,                        // 16 Extensión teléfono
-    0,                           // 17 Tipo de régimen IVA (must be integer 0)
-    null,                        // 18 Responsabilidad fiscal
-    null,                        // 19 Código Postal
-    null,                        // 20 Nombres contacto
-    null,                        // 21 Apellidos contacto
-    null,                        // 22 Indicativo contacto
-    null,                        // 23 Teléfono contacto
-    null,                        // 24 Extensión contacto
-    email||null,                 // 25 Correo electrónico contacto
-    null,                        // 26 Identificación cobrador
-    null,                        // 27 Identificación vendedor
-    null,                        // 28 Otros
-    null,                        // 29 Clientes
-    null,                        // 30 Proveedor
-    null,                        // 31 Estado
-  ];
-}
-
-// ════════════════════════════════════════════════════════════════════════
-// GENERATE SIIGO EXCEL WITH EXACT FORMATTING
-// ════════════════════════════════════════════════════════════════════════
-async function generateExcel(dataRows){
-  const ExcelJS=window.ExcelJS;
-  const wb=new ExcelJS.Workbook();
-  wb.creator='CloudBeds SIIGO Converter';
-  wb.created=new Date();
-
-  const ws=wb.addWorksheet('Hoja1');
-
-  // ── HEADER ROW ──
-  const headerValues=SIIGO_COLS.map(c=>c.h);
-  const headerRow=ws.addRow(headerValues);
-  headerRow.height=32.25;
-
-  SIIGO_COLS.forEach((col,i)=>{
-    const cell=headerRow.getCell(i+1);
-    // EXACT colors: required=white(FFFFFFFF), optional=blue(FF00AAFF)
-    cell.fill={
-      type:'pattern',pattern:'solid',
-      fgColor:{argb: col.required ? 'FFFFFFFF' : 'FF00AAFF'}
-    };
-    cell.font={name:'Calibri',size:12,bold:true,color:{argb:'FF000000'}};
-    cell.alignment={horizontal:'center',vertical:'middle',wrapText:true};
-    // Border (subtle)
-    cell.border={
-      bottom:{style:'thin',color:{argb:'FFCCCCCC'}}
-    };
-  });
-
-  // ── DATA ROWS ──
-  dataRows.forEach(rowData=>{
-    const row=ws.addRow(rowData);
-    row.height=15;
-    row.eachCell({includeEmpty:false},(cell)=>{
-      // Data font: Aptos Narrow 11pt (exact match to model)
-      cell.font={name:'Aptos Narrow',size:11};
-    });
-  });
-
-  // ── COLUMN WIDTHS ──
-  SIIGO_COLS.forEach((col,i)=>{
-    ws.getColumn(i+1).width=col.w;
-  });
-
-  // ── FREEZE HEADER ──
-  ws.views=[{state:'frozen',xSplit:0,ySplit:1,activeCell:'A2'}];
-
-  const buf=await wb.xlsx.writeBuffer();
-  return new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
-}
-
-// ════════════════════════════════════════════════════════════════════════
-// MAIN ACTIONS
-// ════════════════════════════════════════════════════════════════════════
 async function doPreview(){
   if(!selectedFile) return;
-  clearAlert();hideProgress();
-  setProgress(30,'Reading file…');
+  clearAlert();hideProgress();setProgress(30,'Reading file…');
   try{
-    const rawData=await readFile(selectedFile);
-    setProgress(70,'Detecting format…');
-    const headers=rawData.length>0?Object.keys(rawData[0]).map(h=>h.toLowerCase()):[];
+    const data=await readFile(selectedFile);
+    setProgress(70,'Processing…');
+    const headers=data.length?Object.keys(data[0]).map(h=>String(h||'')):[];
     const fmt=detectFormat(headers);
-    const rows=fmt==='old'?processOldFormat(rawData):processNewFormat(rawData);
-    setProgress(100,'Done!');
-    setTimeout(hideProgress,400);
-    processedRows=rows;
-    renderPreview(rows);
-  }catch(e){
-    hideProgress();showAlert('Error reading file: '+e.message);
-  }
+    const{rows,warnings}=fmt==='old'?processOldFormat(data):processNewFormat(data);
+    setProgress(100,'Done!');setTimeout(hideProgress,400);
+    renderPreview(rows,warnings);
+  }catch(e){hideProgress();showAlert('Error: '+e.message);}
 }
 
 async function doConvert(){
   if(!selectedFile) return;
   clearAlert();hideProgress();
-  $('btnSpin').classList.add('show');
-  $('btnTxt').textContent='Generating…';
-  $('convertBtn').disabled=true;
-  $('previewBtn').disabled=true;
+  $('btnSpin').classList.add('show');$('btnTxt').textContent='Generating…';
+  $('convertBtn').disabled=true;$('previewBtn').disabled=true;
   setStep(2);
-
   try{
     setProgress(20,'Reading file…');
-    const rawData=await readFile(selectedFile);
+    const data=await readFile(selectedFile);
     setProgress(45,'Processing records…');
-    const headers=rawData.length>0?Object.keys(rawData[0]).map(h=>h.toLowerCase()):[];
+    const headers=data.length?Object.keys(data[0]).map(h=>String(h||'')):[];
     const fmt=detectFormat(headers);
-    const rows=fmt==='old'?processOldFormat(rawData):processNewFormat(rawData);
-    processedRows=rows;
-
-    setProgress(70,'Building SIIGO Excel (exact format)…');
+    const{rows,warnings}=fmt==='old'?processOldFormat(data):processNewFormat(data);
+    setProgress(72,'Building Excel with exact SIIGO format…');
     const blob=await generateExcel(rows);
     lastBlob=blob;
-
-    setProgress(95,'Finalizing…');
-    await new Promise(r=>setTimeout(r,300));
-    setProgress(100,'Complete!');
-    setTimeout(hideProgress,500);
-
+    setProgress(100,'Complete!');setTimeout(hideProgress,500);
     setStep(3);
-    renderResult(rows, fmt);
+    renderResult(rows,warnings,fmt);
   }catch(e){
     hideProgress();
-    showAlert('Error: '+e.message+'. Make sure ExcelJS loaded (check internet connection).');
+    showAlert('Error generating file: '+e.message+'. Make sure you have internet (for ExcelJS library).');
     console.error(e);
-  } finally {
-    $('btnSpin').classList.remove('show');
-    $('btnTxt').textContent='⚡ Generate SIIGO File';
-    $('convertBtn').disabled=false;
-    $('previewBtn').disabled=false;
+  }finally{
+    $('btnSpin').classList.remove('show');$('btnTxt').textContent='⚡ Generate SIIGO File';
+    $('convertBtn').disabled=false;$('previewBtn').disabled=false;
   }
 }
 
@@ -1262,58 +903,55 @@ function triggerDownload(){
   if(!lastBlob) return;
   const url=URL.createObjectURL(lastBlob);
   const a=document.createElement('a');
-  a.href=url; a.download='ARCHIVO_PLANO_TERCEROS.xlsx';
-  document.body.appendChild(a); a.click();
-  document.body.removeChild(a);
+  a.href=url;a.download='ARCHIVO_PLANO_TERCEROS.xlsx';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
   setTimeout(()=>URL.revokeObjectURL(url),5000);
 }
 
-function renderResult(rows, fmt){
-  const rs=$('resultSection');
-  rs.style.display='block';
-
-  // Stats
+function renderResult(rows,warnings,fmt){
+  const rs=$('resultSection');rs.style.display='block';
   const col=rows.filter(r=>r[3]===13).length;
-  const foreign=rows.filter(r=>r[3]===41).length;
+  const fgn=rows.filter(r=>r[3]===41).length;
   $('statsGrid').innerHTML=`
     <div class="stat-box"><div class="stat-n">${rows.length}</div><div class="stat-l">Total Records</div></div>
-    <div class="stat-box"><div class="stat-n" style="background:linear-gradient(135deg,#22c55e,#16a34a);-webkit-background-clip:text;-webkit-text-fill-color:transparent">${col}</div><div class="stat-l">Colombian (tipo 13)</div></div>
-    <div class="stat-box"><div class="stat-n" style="background:linear-gradient(135deg,#a855f7,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent">${foreign}</div><div class="stat-l">Foreign (tipo 41)</div></div>
-    <div class="stat-box"><div class="stat-n" style="background:linear-gradient(135deg,#f59e0b,#d97706);-webkit-background-clip:text;-webkit-text-fill-color:transparent">${fmt==='old'?'Full':'Summary'}</div><div class="stat-l">Source Format</div></div>
+    <div class="stat-box"><div class="stat-n" style="background:linear-gradient(135deg,#22c55e,#16a34a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">${col}</div><div class="stat-l">Colombian tipo 13</div></div>
+    <div class="stat-box"><div class="stat-n" style="background:linear-gradient(135deg,#a855f7,#7c3aed);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">${fgn}</div><div class="stat-l">Foreign tipo 41</div></div>
+    <div class="stat-box"><div class="stat-n" style="background:linear-gradient(135deg,#f59e0b,#d97706);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">${fmt==='old'?'Full':'Summary'}</div><div class="stat-l">Source Format</div></div>
   `;
-  $('dlSubtitle').textContent=`${rows.length} records processed · Sheet: Hoja1 · Calibri 12pt Bold headers · Blue (FF00AAFF) optional columns`;
-
-  renderPreview(rows);
+  // Warnings
+  const wb=$('warnBox');
+  if(warnings.length){
+    wb.innerHTML=`<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>${warnings.length} country lookup warning(s):</strong><ul class="warn-list">${warnings.slice(0,5).map(w=>`<li>· ${w}</li>`).join('')}${warnings.length>5?`<li>… and ${warnings.length-5} more</li>`:''}</ul></div></div>`;
+  } else {wb.innerHTML='';}
+  $('dlSubtitle').textContent=`${rows.length} records · Calibri 12pt Bold · FF00AAFF blue · Aptos Narrow 11pt data · ≤10 digit phones`;
+  renderPreview(rows,warnings);
   rs.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-function renderPreview(rows){
-  const previewCard=$('previewCard');
-  const body=$('previewBody');
-  previewCard.style.display='block';
+function renderPreview(rows,warnings=[]){
+  $('previewCard').style.display='block';
   const shown=Math.min(rows.length,50);
   $('previewCount').textContent=`Showing ${shown} of ${rows.length} total records`;
-  body.innerHTML='';
+  const body=$('previewBody');body.innerHTML='';
   rows.slice(0,50).forEach((r,i)=>{
-    const tr=document.createElement('tr');
     const t=r[3];
+    const ph=r[14]||'';
+    const phOk=ph.length<=10;
+    const tr=document.createElement('tr');
     tr.innerHTML=`
       <td style="color:var(--text3)">${i+1}</td>
-      <td><span class="code" style="font-size:.7rem">${esc(r[0])}</span></td>
+      <td><span class="code" style="font-size:.68rem">${esc(r[0])}</span></td>
       <td><span class="badge badge-${t}">${t===13?'DNI-13':'PAP-41'}</span></td>
       <td>${esc(r[6])}</td>
       <td>${esc(r[7])}</td>
       <td><span class="code">${esc(r[10])}</span></td>
-      <td><span class="code">${esc(r[11])}</span></td>
-      <td><span class="code">${esc(r[12])}</span></td>
-      <td style="color:var(--text2)">${esc(r[14])}</td>
-      <td style="color:var(--text2);max-width:160px;overflow:hidden;text-overflow:ellipsis" title="${esc(r[24])}">${esc(r[24])}</td>
+      <td style="color:${phOk?'var(--green)':'var(--red)'}"><span title="${phOk?'OK':'Truncated to 10'}" style="font-family:var(--mono);font-size:.7rem">${esc(ph)} ${!phOk?'⚠':'✓'}</span></td>
+      <td style="color:var(--text2);font-size:.7rem" title="${esc(r[24])}">${esc((r[24]||'').substring(0,28))}</td>
     `;
     body.appendChild(tr);
   });
   $('resultSection').style.display='block';
 }
-
 function esc(v){
   if(v===null||v===undefined||v==='') return '<span style="color:var(--text3)">—</span>';
   return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');

@@ -120,6 +120,89 @@ footer span{color:var(--teal)}
 </style>
 </head>
 <body>
+
+<!-- ── PASSWORD SCREEN ── -->
+<div id="passwordScreen" style="
+  position:fixed;inset:0;z-index:9999;
+  background:#0f1117;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Inter',system-ui,sans-serif;
+">
+  <div style="
+    background:#1a1d27;border:1px solid #2e3350;
+    border-radius:16px;padding:2.5rem 2rem;
+    width:100%;max-width:380px;text-align:center;
+    box-shadow:0 8px 40px rgba(0,0,0,.5);
+    position:relative;overflow:hidden;
+  ">
+    <!-- top glow line -->
+    <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,201,177,.4),transparent)"></div>
+
+    <div style="width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#00c9b1,#00a8d4);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 1.25rem">🔐</div>
+
+    <h2 style="color:#e8eaf2;font-size:1.3rem;font-weight:700;margin-bottom:.4rem;letter-spacing:-.3px">CloudBeds → SIIGO</h2>
+    <p style="color:#8892b0;font-size:.85rem;margin-bottom:1.75rem;line-height:1.5">Enter your access password to continue</p>
+
+    <input
+      type="password"
+      id="pwdInput"
+      placeholder="Password"
+      onkeydown="if(event.key==='Enter')checkPwd()"
+      style="
+        width:100%;padding:.75rem 1rem;
+        background:#22263a;border:1px solid #2e3350;
+        border-radius:8px;color:#e8eaf2;font-size:.95rem;
+        font-family:'Inter',system-ui,sans-serif;
+        outline:none;transition:border-color .2s;
+        margin-bottom:.75rem;
+      "
+      onfocus="this.style.borderColor='#00c9b1'"
+      onblur="this.style.borderColor='#2e3350'"
+    />
+
+    <div id="pwdError" style="color:#fca5a5;font-size:.8rem;margin-bottom:.75rem;min-height:1.1rem;font-family:'JetBrains Mono',monospace"></div>
+
+    <button onclick="checkPwd()" style="
+      width:100%;padding:.8rem;border:none;border-radius:8px;
+      background:#00c9b1;color:#0f1117;
+      font-size:.95rem;font-weight:700;cursor:pointer;
+      font-family:'Inter',system-ui,sans-serif;
+      transition:all .18s;
+      box-shadow:0 3px 16px rgba(0,201,177,.3);
+    "
+    onmouseover="this.style.background='#00dfc5'"
+    onmouseout="this.style.background='#00c9b1'"
+    >Enter</button>
+
+    <p style="color:#4a5568;font-size:.72rem;margin-top:1.25rem;font-family:'JetBrains Mono',monospace">JALO RENT SAS · Billing Tool</p>
+  </div>
+</div>
+
+<script>
+// Simple password gate — obfuscated (not real security, but keeps casual visitors out)
+const _k = atob('RGFya2VuZXJneTEwMA==');
+function checkPwd(){
+  const v = document.getElementById('pwdInput').value;
+  if(v === _k){
+    document.getElementById('passwordScreen').style.display='none';
+    sessionStorage.setItem('siigo_auth','1');
+  } else {
+    const e = document.getElementById('pwdError');
+    e.textContent = '✕  Incorrect password. Try again.';
+    document.getElementById('pwdInput').value='';
+    document.getElementById('pwdInput').focus();
+    setTimeout(()=>e.textContent='', 3000);
+  }
+}
+// Stay unlocked during the session (no re-ask on refresh within same tab)
+if(sessionStorage.getItem('siigo_auth')==='1'){
+  document.addEventListener('DOMContentLoaded',()=>{
+    const s=document.getElementById('passwordScreen');
+    if(s) s.style.display='none';
+  });
+}
+</script>
+
 <header>
   <div class="logo">
     <div class="logo-icon">📊</div>
